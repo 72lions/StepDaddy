@@ -20,7 +20,7 @@ html, body {
 
 @-webkit-keyframes beat {
   from {
-    background: white; }
+    background: rgba(255, 255, 255, 0.8); }
 
   to {
     background: rgba(255, 255, 255, 0); } }
@@ -29,12 +29,13 @@ html, body {
   -webkit-animation-name: beat;
   -webkit-animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-duration: 2s; }
+  -webkit-animation-duration: .6s;
+  -webkit-transform: translateZ(0); }
 
 #pattern-editor,
 #sequencer-view {
   height: 100%;
-  display: none; }
+  display: block; }
   #pattern-editor table,
   #sequencer-view table {
     width: 100%;
@@ -51,17 +52,31 @@ html, body {
       height: 20px;
       -webkit-animation-iteration-count: infinite;
       -webkit-animation-duration: 2s;
-      background: #C8DEC0; }
+      background-color: #C8DEC0; }
   #pattern-editor td,
   #sequencer-view td {
-    border: 1px solid #333333; }
+    border: 1px solid #333333;
+    background: #000; }
     #pattern-editor td:active, #pattern-editor td.active,
     #sequencer-view td:active,
     #sequencer-view td.active {
-      background: #C8DEC0; }
+      background: transparent; }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
+      width: 100px;
+      background: transparent; }
+      #pattern-editor td:nth-child(1) h1,
+      #sequencer-view td:nth-child(1) h1 {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100px;
+        padding: 10px;
+        box-sizing: border-box; }
+    #pattern-editor td:nth-child(2),
+    #sequencer-view td:nth-child(2) {
       border-left: 1px solid #f9f9f9; }
-    #pattern-editor td:nth-child(8),
-    #sequencer-view td:nth-child(8) {
+    #pattern-editor td:nth-child(9),
+    #sequencer-view td:nth-child(9) {
       border-right: 1px solid #f9f9f9; }

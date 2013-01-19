@@ -18,7 +18,7 @@
     this.tracks = tracks || [];
     this.volume = volume || 0;
     this.type = type || 'samples';
-    this.color = color || '#888';
+    this.color = color || '#C8DEC0';
 
     this.available = true;
     this.numTracksLoaded = 0;
