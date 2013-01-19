@@ -20,20 +20,19 @@ html, body {
 }
 
 
-/*
+
 @-webkit-keyframes beat {
     from { background: rgba(255,255,255,0.8); }
     to { background: rgba(255,255,255,0); }
 }
-
 .beat {
   -webkit-animation-name: beat;
   -webkit-animation-timing-function: ease-out; 
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-duration: .2s;
+  -webkit-animation-duration: .6s;
   -webkit-transform: translateZ(0);
 }
-*/
+
 
 #pattern-editor,
 #sequencer-view {
@@ -73,6 +72,7 @@ html, body {
     // label
     &:nth-child(1) {
       background: white;
+      width: 100px;
       h1 {
         font-weight: bold;
         text-transform: uppercase;

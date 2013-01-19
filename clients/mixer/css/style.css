@@ -18,20 +18,20 @@ html, body {
   to {
     left: 100%; } }
 
-/*
 @-webkit-keyframes beat {
-    from { background: rgba(255,255,255,0.8); }
-    to { background: rgba(255,255,255,0); }
-}
+  from {
+    background: rgba(255, 255, 255, 0.8); }
+
+  to {
+    background: rgba(255, 255, 255, 0); } }
 
 .beat {
   -webkit-animation-name: beat;
-  -webkit-animation-timing-function: ease-out; 
+  -webkit-animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-duration: .2s;
-  -webkit-transform: translateZ(0);
-}
-*/
+  -webkit-animation-duration: .6s;
+  -webkit-transform: translateZ(0); }
+
 #pattern-editor,
 #sequencer-view {
   height: 100%;
@@ -62,15 +62,17 @@ html, body {
       background: #C8DEC0; }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
-      width: 100px;
       background: white;
-      padding: 10px; }
+      width: 100px; }
       #pattern-editor td:nth-child(1) h1,
       #sequencer-view td:nth-child(1) h1 {
         font-weight: bold;
         text-transform: uppercase;
         text-overflow: ellipsis;
-        overflow: hidden; }
+        overflow: hidden;
+        width: 100px;
+        padding: 10px;
+        box-sizing: border-box; }
     #pattern-editor td:nth-child(2),
     #sequencer-view td:nth-child(2) {
       border-left: 1px solid #f9f9f9; }

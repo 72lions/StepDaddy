@@ -186,7 +186,7 @@
             }
 
             // Attempt to synchronize drawing time with sound
-            if (_noteTime+0.2 != _lastDrawTime) {
+            if (_noteTime != _lastDrawTime) {
                 _lastDrawTime = _noteTime;
                 _self.emit(mixr.enums.Events.SEQUENCER_BEAT, _noteIndex);
             }
