@@ -16,7 +16,7 @@
     this.id = id || '';
     this.name = name || '';
     this.notes = notes || [];
-    this.sampleURL = sampleURL || '';
+    this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
 
     /**
@@ -26,10 +26,12 @@
      * @function
      * @return {mixr.controllers.Track} This instance of the model.
      */
-    this.initialize = function(sampleURL) {
-      this.sampleURL = sampleURL;
-      this.notes = [];
+    this.initialize = function() {
       return this;
+    };
+
+    this.setNoteVolume = function(index, volume) {
+      this.notes[index] = volume;
     };
 
     this.getNotes = function() {
