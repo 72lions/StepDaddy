@@ -42,6 +42,11 @@
      */
     this.show = function() {
       $item.show();
+
+      var playheadDuration = 60 / 120 * 4;
+      var $playhead = $('#playhead');
+      $playhead.css('-webkit-animation-duration', playheadDuration + 's');
+
       return this;
     }
 
