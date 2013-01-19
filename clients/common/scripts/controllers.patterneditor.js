@@ -30,8 +30,7 @@
     var _model = model || {};
 
     var _onNote = function(data) {
-      console.log(data);
-      _model.updateNote(data)
+      _model.updateNote(data.volume, data.note);
     };
 
     /**

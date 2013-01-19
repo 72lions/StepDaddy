@@ -160,6 +160,10 @@
       _self.emit(mixr.enums.Events.INSTRUMENT, data);
     };
 
+    var _onNote = function(data) {
+      console.log('Mixer got a note', data);
+      _self.emit(mixr.enums.Events.INSTRUMENT, data);
+    };
     /**
      * Is triggered when a command is executed and the results
      * are being send from the server.
@@ -208,7 +212,8 @@
       .on(mixr.enums.Events.CLIENT_JOINED, _onClientJointed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
-      .on(mixr.enums.Events.INSTRUMENT, _onInstrument);
+      .on(mixr.enums.Events.INSTRUMENT, _onInstrument)
+      .on(mixr.enums.Events.NOTE, _onNote);
 
       return this;
     };

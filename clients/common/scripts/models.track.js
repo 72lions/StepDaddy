@@ -15,8 +15,8 @@
 
     this.id = id || '';
     this.name = name || '';
-    this.notes = notes || [];
-    this.sampleURL = sampleURL || '';
+    this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    this.sampleURL = sampleUrl || '';
     this.volume = volume || 1;
 
     /**
