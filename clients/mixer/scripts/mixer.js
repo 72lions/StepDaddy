@@ -6,6 +6,7 @@
     var _client_id = 'Mixr_mixer_1';
     var _conn;
     var _clients = {};
+    var _instruments = {};
 
     var _itemsContainer = document.getElementById('connected_clients');
 
@@ -61,7 +62,10 @@
       var instrument = _sequencer.getRandomInstrument(data.client);
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
-        _sequencerView.addInstrument(instrument);
+        if (typeof _instruments[data.client] === 'undefined') {
+          _sequencerView.addInstrument(instrument);
+          _instruments[data.client] = instrument;
+        }
       } else {
         console.log('No more instruments available.');
       }
