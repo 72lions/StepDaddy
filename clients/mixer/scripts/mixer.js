@@ -35,16 +35,15 @@
         console.log('A client with id', data.client, 're-joined the room');
       } else {
         console.log('A client with id ', data.client, 'joined the room');
+        var element = '<div id="' + data.client + '" class="connected_client">' +
+            '<span class="indicator"></span>' +
+            '<label class="client_name">' + data.client + '</label>' +
+            '</div>';
+
+        _itemsContainer.innerHTML += element;
       }
 
       _clients[data.client] = true;
-
-      var element = '<div id="' + data.client + '" class="connected_client">' +
-          '<span class="indicator"></span>' +
-          '<label class="client_name">' + data.client + '</label>' +
-          '</div>';
-
-      _itemsContainer.innerHTML += element;
 
     };
 
@@ -56,19 +55,9 @@
 
     var _onGetInstrument = function(data) {
       console.log('Got a request for an instrument', data);
-      var randomResponse = {
-        id: 'SomeRandomId',
-        name: 'The name',
-        tracksIds: [0]
-      };
-
-      _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: randomResponse});
-
+      var instrument = new mixr.models.Instrument('SomeRandomId', 'The name', [0]);
+      _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
     };
-
-    var _onInstrument = function(data) {
-      console.log('GOT THE INSTRUMENT', data);
-    }
 
     this.initialize = function() {
 
