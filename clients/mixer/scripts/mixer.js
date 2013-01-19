@@ -54,6 +54,10 @@
       _itemsContainer.removeChild(element);
     };
 
+    var _onEmit = function(data) {
+      console.log('A client emitted', data);
+    }
+
     this.initialize = function() {
 
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
@@ -65,7 +69,8 @@
           })
       .on(mixr.enums.Events.CLIENT_JOINED, _onClientJoined)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
-      .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft);
+      .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
+      .on(mixr.enums.Events.EMIT, _onEmit);
     };
 
   };
