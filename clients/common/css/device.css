@@ -1,0 +1,21 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.search-box {
+  margin: 0 0 20px 0;
+}
+
+  .search-box .search {
+    margin: 5px 0 0 5px;
+    text-transform: uppercase;
+    font-size: 90px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    font-weight: bold;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Lucida Sans", sans-serif;
+  }

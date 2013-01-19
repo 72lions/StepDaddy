@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Device</title>
+  <link rel="stylesheet" href="../common/css/device.css" />
+</head>
+<body>
+
+  <div class="search-box">
+    <input type="text" class="search" id="search" autocomplete="off" />
+  </div>
+
+  <input type="text" id="client_id" value="Mixr_client_1" />&nbsp;
+  <input type="button" value="Connect" id="connect"/><br/><br/>
+
+  <input type="text" id="room_id" value="Mixr_room_1" />&nbsp;<input type="button" value="Join room" id="join_room"/>
+  <input type="button" value="Disconnect" id="disconnect"/><br/><br/>
+
+  <input type="button" value="Emit!" id="emitter"/><br/>
+
+  <script src="http://localhost:8181/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="../common/scripts/namespaces.js"></script>
+  <script type="text/javascript" src="../common/scripts/mixins.eventtarget.js"></script>
+  <script type="text/javascript" src="../common/scripts/mixins.wrapper.js"></script>
+  <script type="text/javascript" src="../common/scripts/enum.events.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.connection.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.response.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.proxyrequest.js"></script>
+
+  <script type="text/javascript" src="../common/scripts/models.search.js"></script>
+  <script type="text/javascript" src="../common/scripts/controllers.search.js"></script>
+  <script type="text/javascript" src="../common/scripts/views.search.js"></script>
+
+
+  <script type="text/javascript" src="scripts/device.js"></script>
+</body>
+</html>

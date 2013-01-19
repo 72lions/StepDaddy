@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Mixer</title>
+  <style>
+
+    .clear {
+      clear: both;
+    }
+
+    .connected_client {
+      float:left;
+      width: 150px;
+      height: 100px;
+      border: 1px solid black;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="room_title"></h1>
+
+  <input type="button" value="Disconnect" id="disconnect"/>
+  <div class="clear" />
+
+  <div id="connected_clients">
+  </div>
+
+  <script src="http://localhost:8181/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="../common/scripts/namespaces.js"></script>
+  <script type="text/javascript" src="../common/scripts/mixins.eventtarget.js"></script>
+  <script type="text/javascript" src="../common/scripts/mixins.wrapper.js"></script>
+  <script type="text/javascript" src="../common/scripts/enum.events.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.connection.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.response.js"></script>
+  <script type="text/javascript" src="../common/scripts/net.proxyrequest.js"></script>
+
+  <script type="text/javascript" src="scripts/mixer.js"></script>
+
+</body>
+</html>
