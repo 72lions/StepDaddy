@@ -16,6 +16,8 @@
 
     var _self = this;
 
+    var trackCount = 0;
+
     var $item = item;
     var $table = $item.find('table');
 
@@ -45,14 +47,32 @@
 
 
     this.addTrack = function (track) {
-      console.log('addTrack', track, track.notes.length);
+      console.log('addTrack', track);
+
+      if (trackCount === 0) {
+        _renderHeader(track.notes.length);
+      }
 
       var $row = $('<tr>');
       for (var i = 0; i < track.notes.length; i++) {
         var $td = $('<td>');
         $row.append($td);
       }
+
       $table.append($row);
+      trackCount++;
+    };
+
+    var _renderHeader = function (length) {
+      var $head = $('<thead>');
+      for (var i = 0; i < length; i++) {
+        var $th = $('<th>');
+        $head.append($th);
+      }
+
+      $head.children().eq(0).attr('id', 'playhead');
+
+      $table.append($head);
     };
 
     /**
@@ -65,7 +85,7 @@
       _startPlayHead();
 
       return this;
-    }
+    };
 
     /**
      * Initializes the component
