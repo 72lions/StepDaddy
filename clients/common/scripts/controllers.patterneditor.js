@@ -52,9 +52,20 @@
      */
     this.initialize = function() {
       _model.initialize();
+
       view = new mixr.views.PatternEditor($('#pattern-editor'))
-      .initialize()
-      .on(mixr.enums.Events.NOTE, _onNote);
+        .initialize()
+        .on(mixr.enums.Events.NOTE, _onNote);
+
+      _model.on(mixr.enums.Events.INSTRUMENT, function () {
+        var tracks = _model.instrument.tracks;
+        for (var i = 0; i < tracks.length; i++) {
+          view.addTrack(tracks[i]);
+        }
+      });
+      
+      _model.getInstrument();
+
       return this;
     };
 
