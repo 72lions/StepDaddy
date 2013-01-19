@@ -1,21 +1,15 @@
-@import url(../../common/css/core.css);
-.search-box {
-  margin: 0 0 20px 0; }
-
-.search-box .search {
-  margin: 5px 0 0 5px;
-  text-transform: uppercase;
-  font-size: 90px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  outline: none;
-  font-weight: bold;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.7);
-  font-family: "Lucida Sans", sans-serif; }
-
-section {
-  height: 100%; }
+html, body {
+  background: black;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 @-webkit-keyframes stepping {
   from {
@@ -25,6 +19,7 @@ section {
     left: 100%; } }
 
 #pattern-editor {
+  height: 100%;
   display: none; }
   #pattern-editor table {
     width: 100%;
@@ -49,3 +44,25 @@ section {
       border-left: 1px solid #f9f9f9; }
     #pattern-editor td:nth-child(8) {
       border-right: 1px solid #f9f9f9; }
+
+/*
+old dodo stuff
+
+.search-box {
+  margin: 0 0 20px 0;
+}
+
+  .search-box .search {
+    margin: 5px 0 0 5px;
+    text-transform: uppercase;
+    font-size: 90px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    font-weight: bold;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Lucida Sans", sans-serif;
+  }
+
+  */

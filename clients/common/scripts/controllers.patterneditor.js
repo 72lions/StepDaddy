@@ -62,6 +62,8 @@
           view.addTrack(tracks[i]);
         }
       });
+
+      // listen for note change event
       
       _model.getInstrument();
 
