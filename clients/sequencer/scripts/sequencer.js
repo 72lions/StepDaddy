@@ -2,6 +2,11 @@
 
   mixr.Sequencer = function(conn) {
 
+    /**
+     * Mixins
+     */
+    mixr.mixins.EventTarget.call(this);
+
     var _clients = {};
     var _instruments = [];
     var _availableInstruments = [];
@@ -141,6 +146,7 @@
         // console.log(currentTime, '/', _noteTime, _noteTime < currentTime + 0.200);
 
         while (_noteTime < currentTime + 0.200) {
+
             // Convert noteTime to context time.
             var contextPlayTime = _noteTime + _startTime;
 
@@ -155,9 +161,9 @@
             }
 
             // Attempt to synchronize drawing time with sound
-            if (_noteTime != _lastDrawTime) {
+            if (_noteTime+0.2 != _lastDrawTime) {
                 _lastDrawTime = _noteTime;
-                // drawPlayhead(_noteIndex);
+                _self.emit(mixr.enums.Events.SEQUENCER_BEAT, _noteIndex);
             }
 
             _self.step();
@@ -165,7 +171,7 @@
 
         // console.log('this', this);
 
-        setTimeout(_self.schedule, 0);
+        requestAnimationFrame(_self.schedule);
     };
 
     this.playNote = function(track, noteTime, volume) {
@@ -194,7 +200,7 @@
 
         _noteIndex++;
 
-        console.log('>>>', _noteIndex);
+        //console.log('>>>', _noteIndex);
 
         if (_noteIndex == _loopLength) {
             _noteIndex = 0;

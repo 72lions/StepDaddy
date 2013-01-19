@@ -44,7 +44,7 @@
     var _onConnect = function() {
       _client_id = document.getElementById('client_id').value;
       _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://10.48.19.160:8181')
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
     };

@@ -81,7 +81,7 @@
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
 
       _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://localhost:8181')
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
@@ -94,6 +94,10 @@
       _sequencer = new mixr.Sequencer();
 
       _sequencerView = new mixr.views.SequencerView(document.getElementById('sequencer-view')).initialize();
+
+      _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function (beat) {
+        _sequencerView.drawPlayhead(beat);
+      });
     };
 
   };
