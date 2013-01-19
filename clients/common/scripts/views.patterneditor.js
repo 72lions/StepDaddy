@@ -44,12 +44,13 @@
     };
 
 
-    var addTrack = function (track) {
-      console.log('addTrack', track);
+    this.addTrack = function (track) {
+      console.log('addTrack', track, track.notes.length);
 
       var $row = $('<tr>');
-      for (var i = 0; track.notes.length < 16; i++) {
-        $row.append('<td>');
+      for (var i = 0; i < track.notes.length; i++) {
+        var $td = $('<td>');
+        $row.append($td);
       }
       $table.append($row);
     };
