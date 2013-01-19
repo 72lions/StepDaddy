@@ -32,8 +32,14 @@
       _self.emit(mixr.enums.Events.INSTRUMENT, _self.instrument);
     };
 
+    var _onNote = function(data) {
+      console.log('PATTERN EDITOR ON NOTE');
+      
+    };
+
     var _addEventListeners = function() {
       _connection.on(mixr.enums.Events.INSTRUMENT, _onInstrument);
+      _connection.on(mixr.enums.Events.NOTE, _onNote);
     };
 
     this.getInstrument = function() {
