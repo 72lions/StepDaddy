@@ -162,7 +162,7 @@
 
     var _onNote = function(data) {
       console.log('Mixer got a note', data);
-      _self.emit(mixr.enums.Events.INSTRUMENT, data);
+      _self.emit(mixr.enums.Events.NOTE, data);
     };
     /**
      * Is triggered when a command is executed and the results
