@@ -37,7 +37,6 @@
     };
 
     this.loadSample = function(callback) {
-
       var request = new XMLHttpRequest();
       request.open("GET", this.sampleUrl, true);
       request.responseType = "arraybuffer";
@@ -51,4 +50,6 @@
       request.send();
     };
 
+  };
+  
 }());

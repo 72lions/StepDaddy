@@ -3,7 +3,8 @@
   mixr.Sequencer = function(conn) {
 
     var _clients = {};
-    var _instruments = {};
+    var _instruments = [];
+    var _availableInstruments = [];
     var _tracks = {};
 
     var instrumentsConfig = [
@@ -64,6 +65,8 @@
             _instruments.push(instrument);
         };
 
+        _availableInstruments = _instruments.concat();
+
         console.log('Instruments', _instruments);
     };
 
@@ -79,9 +82,17 @@
     }
 
     this.getRandomInstrument = function() {
-        var numAvailableInstruments = _instruments.length;
-        var randomInstrument = _instruments[Math.floor(Math.random() * numAvailableInstruments)];
-        
+        var numAvailableInstruments = _availableInstruments.length;
+        if (numAvailableInstruments === 0) {
+            console.log("No instruments available");
+            return;
+        }
+        var randomIndex = Math.floor(Math.random() * numAvailableInstruments);
+        var randomInstrument = _availableInstruments[randomIndex];
+        _availableInstruments.splice(randomIndex, 1);
+        randomInstrument.initialize();
+        console.log("Released random instrument", randomInstrument);
+        return randomInstrument;
     }
 
     this.initialize();
