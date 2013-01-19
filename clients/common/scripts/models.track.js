@@ -8,6 +8,8 @@
    */
   mixr.models.Track = function(id, name, notes, sampleUrl, volume) {
 
+    var _buffer = null;
+
     /**
      * Mixins
      */
@@ -18,8 +20,9 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
-    this.buffer = null;
-
+    
+    var _self = this;
+    
     /**
      * Initializes the model
      *
@@ -37,19 +40,23 @@
       return _notes;
     };
 
-    this.loadSample = function(context, callback) {
+    this.loadSample = function(callback, context) {
       var request = new XMLHttpRequest();
       request.open("GET", this.sampleUrl, true);
       request.responseType = "arraybuffer";
+      var _context = context;
 
       request.onload = function() {
-          this.buffer = context.createBuffer(request.response, false);
-          callback(this.buffer);
-          console.log('sample loaded', this.buffer);
+        _buffer = _context.createBuffer(request.response, false);
+        callback(_self);
       }
 
       request.send();
     };
+
+    this.getBuffer = function() {  
+      return _buffer;
+    }
 
   };
 

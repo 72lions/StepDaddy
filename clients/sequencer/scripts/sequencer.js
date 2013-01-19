@@ -51,11 +51,11 @@
         ]
     }];
 
-    var samplesPath = '../common/resources/'; 
+    var samplesPath = '../common/resources/12-TR-909/'; 
 
     this.initialize = function() {
-      console.log('initialize Sequencer');
-      this._context = new webkitAudioContext();
+      _context = new webkitAudioContext();
+      console.log('initialize Sequencer', _context);
       this.createInstruments();
     };
 
@@ -81,7 +81,7 @@
         };
 
         return tracks;
-    }
+    };
 
     this.getRandomInstrument = function() {
         var numAvailableInstruments = _availableInstruments.length;
@@ -92,10 +92,23 @@
         var randomIndex = Math.floor(Math.random() * numAvailableInstruments);
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
-        randomInstrument.initialize(_context);
+        randomInstrument.initialize();
+        randomInstrument.loadTracks(_context);
         console.log("Released random instrument", randomInstrument);
         return randomInstrument;
-    }
+    };
+
+    this.step = function() {
+        // Advance time by a 16th note...
+        var secondsPerBeat = 60.0 / tempo;
+        noteTime += 0.25 * secondsPerBeat;
+
+        noteIndex++;
+        if (noteIndex == loopLength) {
+            noteIndex = 0;
+            pattern++;
+        }
+    };
 
     this.initialize();
   };
