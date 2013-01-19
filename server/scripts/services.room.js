@@ -84,7 +84,6 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
     };
 
     var _onGetInstrument = function(data) {
-      console.log('ON GET INSTRUMENT [ROOM.JS]');
       _roomOwnerClient.send('get_instrument', {client: data.client});
     };
 

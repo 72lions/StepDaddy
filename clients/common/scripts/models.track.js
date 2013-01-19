@@ -6,18 +6,18 @@
    * @constructor
    * @class Track
    */
-  mixr.models.Track = function() {
+  mixr.models.Track = function(id, name, notes, sampleUrl, volume) {
 
     /**
      * Mixins
      */
     mixr.mixins.Wrapper.call(this);
 
-    var _id;
-    var _name;
-    var _notes;
-    var _sampleURL;
-    var _volume;
+    this.id = id || '';
+    this.name = name || '';
+    this.notes = notes || [];
+    this.sampleURL = sampleURL || '';
+    this.volume = volume || 1;
 
     /**
      * Initializes the model
@@ -27,8 +27,8 @@
      * @return {mixr.controllers.Track} This instance of the model.
      */
     this.initialize = function(sampleURL) {
-      this._sampleURL = sampleURL;
-      this._notes = [];
+      this.sampleURL = sampleURL;
+      this.notes = [];
       return this;
     };
 

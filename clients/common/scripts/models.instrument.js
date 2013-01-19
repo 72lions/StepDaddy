@@ -4,19 +4,19 @@
    * The instrument model
    *
    * @constructor
-   * @class Intrument
+   * @class Instrument
    */
-  mixr.models.Intrument = function() {
+  mixr.models.Instrument = function(id, name, tracks, volume) {
 
     /**
      * Mixins
      */
     mixr.mixins.Wrapper.call(this);
 
-    var _id;
-    var _name;
-    var _trackIds;
-    var _volume;
+    this.id = id || '';
+    this.name = name || '';
+    this.tracks = tracks || [];
+    this.volume = volume || 0;
 
     /**
      * Initializes the model
