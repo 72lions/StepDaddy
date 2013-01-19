@@ -36,6 +36,24 @@
       $table.on('click', 'td', _onToggleNote);
     };
 
+
+    var _startPlayHead = function () {
+      var playheadDuration = 60 / 120 * 4;
+      var $playhead = $('#playhead');
+      $playhead.css('-webkit-animation-duration', playheadDuration + 's');
+    };
+
+
+    var addTrack = function (track) {
+      console.log('addTrack', track);
+
+      var $row = $('<tr>');
+      for (var i = 0; track.notes.length < 16; i++) {
+        $row.append('<td>');
+      }
+      $table.append($row);
+    };
+
     /**
      * Shows an HTML element
      * @return {mixr.views.PatternEditor} A reference to this instance.
@@ -43,9 +61,7 @@
     this.show = function() {
       $item.show();
 
-      var playheadDuration = 60 / 120 * 4;
-      var $playhead = $('#playhead');
-      $playhead.css('-webkit-animation-duration', playheadDuration + 's');
+      _startPlayHead();
 
       return this;
     }

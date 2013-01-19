@@ -59,7 +59,6 @@
      */
     this.initialize = function() {
       _addEventListeners();
-      this.getInstrument();
       return this;
     };
 
