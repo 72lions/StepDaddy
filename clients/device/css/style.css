@@ -22,23 +22,30 @@ section {
     left: 0%; }
 
   to {
-    left: 99.7%; } }
+    left: 100%; } }
 
 #pattern-editor {
   display: none; }
   #pattern-editor table {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    border-collapse: collapse; }
   #pattern-editor thead th {
     height: 20px; }
-    #pattern-editor thead th.playhead {
+    #pattern-editor thead th#playhead {
       position: relative;
       left: 0%;
       top: 0;
       height: 20px;
-      -webkit-animation: stepping 10s steps(16, end) infinite;
+      -webkit-animation-name: stepping;
+      -webkit-animation-timing-function: steps(16, end);
+      -webkit-animation-iteration-count: infinite;
       background: #C8DEC0; }
   #pattern-editor td {
-    border: 1px solid grey; }
+    border: 1px solid #333333; }
     #pattern-editor td:active, #pattern-editor td.active {
-      background: greenyellow; }
+      background: #C8DEC0; }
+    #pattern-editor td:nth-child(1) {
+      border-left: 1px solid #f9f9f9; }
+    #pattern-editor td:nth-child(8) {
+      border-right: 1px solid #f9f9f9; }
