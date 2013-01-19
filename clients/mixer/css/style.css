@@ -60,7 +60,17 @@ html, body {
     #pattern-editor td:active, #pattern-editor td.active,
     #sequencer-view td:active,
     #sequencer-view td.active {
-      background: transparent; }
+      background: transparent;
+      position: relative; }
+      #pattern-editor td:active:after, #pattern-editor td.active:after,
+      #sequencer-view td:active:after,
+      #sequencer-view td.active:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        top: 0; }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
       width: 100px;
@@ -73,7 +83,8 @@ html, body {
         overflow: hidden;
         width: 100px;
         padding: 10px;
-        box-sizing: border-box; }
+        box-sizing: border-box;
+        text-shadow: 0 1px #aaaaaa; }
     #pattern-editor td:nth-child(2),
     #sequencer-view td:nth-child(2) {
       border-left: 1px solid #f9f9f9; }
