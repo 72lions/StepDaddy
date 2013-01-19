@@ -17,15 +17,30 @@
     var _self = this;
 
     var trackCount = 0;
+    var noteCount = 0;
 
     var $el = $(el);
     var $table = $el.find('table');
 
+    var $playhead = undefined;
    
-    var _startPlayHead = function () {
-      var playheadDuration = 60 / 120 * 4;
-      var $playhead = $('#playhead');
-      $playhead.css('-webkit-animation-duration', playheadDuration + 's');
+
+    this.drawPlayhead = function (beat) {
+      if (!$playhead) {
+        $playhead = $('#playhead');
+      }
+
+      var noteWidth = $(window).width() / noteCount;
+      var offset = noteWidth * (beat);
+
+      $playhead.css('-webkit-transform', 'translate3d(' + offset + 'px, 0, 0)');;
+      /*
+      var $tds = $('td:nth-child(' + (beat+1) + ')');
+      $tds.on('webkitAnimationEnd', function () {
+        $tds.removeClass('beat');
+      });
+      $tds.addClass('beat');
+      */
     };
 
 
@@ -48,13 +63,14 @@
       console.log('addTrack', track);
 
       if (trackCount === 0) {
-        _renderHeader(track.notes.length);
+        noteCount = track.notes.length;
+        _renderHeader(noteCount);
       }
 
       var $row = $('<tr>').attr('data-instrument-id', instrument.id)
                           .attr('data-track-id', track.id);
 
-      for (var i = 0; i < track.notes.length; i++) {
+      for (var i = 0; i < noteCount; i++) {
         var $td = $('<td>');
         $row.append($td);
       }
@@ -81,8 +97,6 @@
      */
     this.show = function() {
       $el.show();
-
-      //_startPlayHead();
       return this;
     };
 

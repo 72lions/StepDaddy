@@ -6,6 +6,7 @@
     var _client_id = 'Mixr_mixer_1';
     var _conn;
     var _clients = {};
+    var _instruments = {};
 
     var _itemsContainer = document.getElementById('connected_clients');
 
@@ -58,10 +59,13 @@
 
     var _onGetInstrument = function(data) {
       console.log('Got a request for an instrument', data);
-      var instrument = _sequencer.getRandomInstrument();
+      var instrument = _sequencer.getRandomInstrument(data.client);
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
-        _sequencerView.addInstrument(instrument);
+        if (typeof _instruments[data.client] === 'undefined') {
+          _sequencerView.addInstrument(instrument);
+          _instruments[data.client] = instrument;
+        }
       } else {
         console.log('No more instruments available.');
       }
@@ -77,7 +81,7 @@
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
 
       _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://localhost:8181')
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
@@ -90,6 +94,10 @@
       _sequencer = new mixr.Sequencer();
 
       _sequencerView = new mixr.views.SequencerView(document.getElementById('sequencer-view')).initialize();
+
+      _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function (beat) {
+        _sequencerView.drawPlayhead(beat);
+      });
     };
 
   };

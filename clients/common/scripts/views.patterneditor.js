@@ -49,13 +49,21 @@
     this.addTrack = function (track) {
       console.log('addTrack', track);
 
+      // Check if we already have a row for that track
+      if ($table.find('tr[data-id="' + track.id + '"]').length > 0) {
+        return;
+      }
+
       if (trackCount === 0) {
         _renderHeader(track.notes.length);
       }
 
-      var $row = $('<tr>');
+      var $row = $('<tr>').attr('data-id', track.id);
       for (var i = 0; i < track.notes.length; i++) {
         var $td = $('<td>');
+        if (track.notes[i] === 1) {
+          $td.addClass('active');
+        }
         $row.append($td);
       }
 

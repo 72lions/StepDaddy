@@ -19,6 +19,22 @@ html, body {
     to { left: 100% }
 }
 
+
+/*
+@-webkit-keyframes beat {
+    from { background: rgba(255,255,255,0.8); }
+    to { background: rgba(255,255,255,0); }
+}
+
+.beat {
+  -webkit-animation-name: beat;
+  -webkit-animation-timing-function: ease-out; 
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-duration: .2s;
+  -webkit-transform: translateZ(0);
+}
+*/
+
 #pattern-editor,
 #sequencer-view {
   height: 100%;
@@ -38,11 +54,13 @@ html, body {
         left: 0%;
         top: 0;
         height: 20px;
-        -webkit-animation-name: stepping;
-        -webkit-animation-timing-function: steps(16, end);
+        
+        //-webkit-animation-name: stepping;
+        //-webkit-animation-timing-function: steps(16, end);
         -webkit-animation-iteration-count: infinite;
-        //-webkit-animation-duration: 10s;
-        background: #C8DEC0;
+        -webkit-animation-duration: 2s;
+        
+        background-color: #C8DEC0;
       }
     }
   }
