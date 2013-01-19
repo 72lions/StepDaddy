@@ -28,6 +28,8 @@
     var _onRoomJoined = function(data) {
       _isJoinedToRoom = data.room;
       console.log('Room joined!', data);
+      $('#login').hide();
+      $('#pattern-editor').show();
     };
 
     var _onJoinRoom = function() {
