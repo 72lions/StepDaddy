@@ -58,7 +58,7 @@
 
     var _onGetInstrument = function(data) {
       console.log('Got a request for an instrument', data);
-      var instrument = _sequencer.getRandomInstrument();
+      var instrument = _sequencer.getRandomInstrument(data.client);
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
         _sequencerView.addInstrument(instrument);

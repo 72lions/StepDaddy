@@ -19,6 +19,7 @@
     var _lastDrawTime = -1;
 
     var _self = this;
+    var _clients = {};
 
     var instrumentsConfig = [
     {
@@ -27,7 +28,7 @@
             {
                 name: 'HiHat',
                 sampleUrl: '909 HHCL 1.wav'
-            }        
+            }
         ]
     }, {
         name: 'Kick',
@@ -35,7 +36,7 @@
             {
                 name: 'Kick',
                 sampleUrl: '909 KIK1.wav'
-            }        
+            }
         ]
     }, {
         name: 'Tom Hi',
@@ -43,7 +44,7 @@
             {
                 name: 'Tom HI',
                 sampleUrl: '909 HI.TOM1.wav'
-            }        
+            }
         ]
     }, {
         name: 'Snare',
@@ -51,7 +52,7 @@
             {
                 name: 'Snare',
                 sampleUrl: '909 SD1.wav'
-            }        
+            }
         ]
     }, {
         name: 'Tom Low',
@@ -59,11 +60,11 @@
             {
                 name: 'Tom Low',
                 sampleUrl: '909 LOWTOM1.wav'
-            }        
+            }
         ]
     }];
 
-    var samplesPath = '../common/resources/12-TR-909/'; 
+    var samplesPath = '../common/resources/12-TR-909/';
 
     this.initialize = function() {
         _context = new webkitAudioContext();
@@ -91,7 +92,7 @@
     };
 
     this.createTracks = function(instrumentId, tracksConfig) {
-        var tracks = []; 
+        var tracks = [];
         for (var i = 0; i < tracksConfig.length; i++) {
             var config = tracksConfig[i];
             var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, samplesPath + config.sampleUrl, 1.0);
@@ -101,7 +102,11 @@
         return tracks;
     };
 
-    this.getRandomInstrument = function() {
+    this.getRandomInstrument = function(clientId) {
+        if (typeof _clients[clientId] !== 'undefined') {
+            return _clients[clientId];
+        }
+
         var numAvailableInstruments = _availableInstruments.length;
         if (numAvailableInstruments === 0) {
             console.log("No instruments available");
@@ -113,6 +118,7 @@
         randomInstrument.initialize(this.start);
         randomInstrument.loadTracks(_context);
         console.log("Released random instrument", randomInstrument);
+        _clients[clientId] = randomInstrument;
         return randomInstrument;
     };
 
@@ -137,7 +143,7 @@
         while (_noteTime < currentTime + 0.200) {
             // Convert noteTime to context time.
             var contextPlayTime = _noteTime + _startTime;
-            
+
             for (var i = 0; i < _instruments.length; i++) {
                 for (var j = 0; j < _instruments[i].tracks.length; j++) {
                     var track = _instruments[i].tracks[j];
@@ -166,7 +172,7 @@
         // Create the note
         var voice = _context.createBufferSource();
         voice.buffer = track.getBuffer();
-        
+
         // Create a gain node.
         var gainNode = _context.createGainNode();
         // Connect the source to the gain node.
@@ -197,7 +203,7 @@
     };
 
     this.updateNote = function (data) {
-        var trackId = data.trackId.split('-')[1]; 
+        var trackId = data.trackId.split('-')[1];
         // TODO check the values MTF
         _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
     };
