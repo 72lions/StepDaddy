@@ -35,16 +35,15 @@
         console.log('A client with id', data.client, 're-joined the room');
       } else {
         console.log('A client with id ', data.client, 'joined the room');
+        var element = '<div id="' + data.client + '" class="connected_client">' +
+            '<span class="indicator"></span>' +
+            '<label class="client_name">' + data.client + '</label>' +
+            '</div>';
+
+        _itemsContainer.innerHTML += element;
       }
 
       _clients[data.client] = true;
-
-      var element = '<div id="' + data.client + '" class="connected_client">' +
-          '<span class="indicator"></span>' +
-          '<label class="client_name">' + data.client + '</label>' +
-          '</div>';
-
-      _itemsContainer.innerHTML += element;
 
     };
 
@@ -55,7 +54,9 @@
     };
 
     var _onGetInstrument = function(data) {
-      console.log('ON GET INSTRUMENT [MIXER.JS]');
+      console.log('Got a request for an instrument', data);
+      var instrument = new mixr.models.Instrument('SomeRandomId', 'The name', [0]);
+      _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
     };
 
     this.initialize = function() {
@@ -71,6 +72,8 @@
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument);
+
+      _sequencer = new mixr.Sequencer();
     };
 
   };

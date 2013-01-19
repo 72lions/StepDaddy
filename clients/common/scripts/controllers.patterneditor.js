@@ -29,6 +29,11 @@
      */
     var _model = model || {};
 
+    var _onNote = function(data) {
+      console.log(data);
+      _model.updateNote(data)
+    };
+
     /**
      * Shows the view
      * @return {mixr.controllers.PatternEditor} This instance of the controller.
@@ -48,7 +53,8 @@
     this.initialize = function() {
       _model.initialize();
       view = new mixr.views.PatternEditor($('#pattern-editor'))
-      .initialize();
+      .initialize()
+      .on(mixr.enums.Events.NOTE, _onNote);
       return this;
     };
 

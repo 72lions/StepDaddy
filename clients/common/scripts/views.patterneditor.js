@@ -23,7 +23,7 @@
 
       var isItOn = $(this).toggleClass('active').hasClass('active');
       console.log('You clicked me dude', this, $(this).index(), isItOn ? 1 : 0);
-      _self.emit(mixr.enums.Events.NOTE, {instrumentId: '12312313', trackId: 0, value: isItOn ? 1 : 0});
+      _self.emit(mixr.enums.Events.NOTE, isItOn ? 1 : 0);
     };
 
     /**
