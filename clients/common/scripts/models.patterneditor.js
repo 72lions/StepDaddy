@@ -41,10 +41,11 @@
       return this;
     };
 
-    this.updateNote = function(volume, note) {
+    this.updateNote = function(volume, note, trackId) {
+      console.log('instrumentId', this.instrument);
       _connection.execute(mixr.enums.Events.NOTE, {
         id: this.instrument.id,
-        trackId: this.instrument.tracks[0].id,
+        trackId: trackId,
         noteId: note,
         volume: volume
       });

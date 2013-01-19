@@ -114,7 +114,7 @@
         for (var i = 0; i < instrumentsConfig.length; i++) {
             var tracks = this.createTracks(i, instrumentsConfig[i].tracks);
             var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks, 1.0);
-            _instruments.push(instrument);
+            _instruments[i] = instrument;
         };
 
         _availableInstruments = _instruments.concat();
@@ -132,6 +132,9 @@
     };
 
     this.getRandomInstrument = function(clientId) {
+
+        console.log('>>> clientId')
+
         if (typeof _clients[clientId] !== 'undefined') {
             return _clients[clientId];
         }
@@ -149,7 +152,7 @@
         randomInstrument.loadTracks(_context);
 
         console.log("Released random instrument", randomInstrument);
-        
+
         _clients[clientId] = randomInstrument;
         return randomInstrument;
     };
@@ -228,12 +231,15 @@
         }
     };
 
-    this.updateNote = function (data) {
+    this.updateNote = function(data) {
+        console.log('update note', data);
+
         var trackId = data.trackId.split('-')[1]; 
         var instrumentId = data.trackId.split('-')[0]; 
+
         // TODO check the values MTF
-        // _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
-        _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;
+        _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
+        // _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;
     };
 
     this.initialize();

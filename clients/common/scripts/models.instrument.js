@@ -13,7 +13,7 @@
      */
     mixr.mixins.Wrapper.call(this);
 
-    this.id = id || '';
+    this.id = id.toString() || '';
     this.name = name || '';
     this.tracks = tracks || [];
     this.volume = volume || 0;
