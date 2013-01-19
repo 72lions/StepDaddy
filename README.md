@@ -1,8 +1,10 @@
-Mixer
+Who's your daddy!!??
 =====
 
-A Spotify Mixer
+
 
 ## Getting Started
 
-Please read the wiki for information on how to get started with this project.
+1. Install dependencies by running **make** from the root folder.
+2. Run server by going into the server folder and running ./run.sh
+3. Run clients by going into the clients folder and running ./run.sh
