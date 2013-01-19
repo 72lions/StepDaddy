@@ -78,6 +78,8 @@
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument);
 
       _sequencer = new mixr.Sequencer();
+
+      _patternEditor = new mixr.controllers.PatternEditor(new mixr.models.PatternEditor(_conn)).initialize();
     };
 
   };

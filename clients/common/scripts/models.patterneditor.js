@@ -34,7 +34,6 @@
 
     var _onNote = function(data) {
       console.log('PATTERN EDITOR ON NOTE');
-      
     };
 
     var _addEventListeners = function() {

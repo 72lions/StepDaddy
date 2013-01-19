@@ -64,7 +64,6 @@
       });
 
       // listen for note change event
-      
       _model.getInstrument();
 
       return this;
