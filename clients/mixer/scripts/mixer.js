@@ -3,7 +3,6 @@
   mixr.Mixer = function() {
 
     var _room_id = 'Mixr_room_1';
-    var _client_id = 'Mixr_mixer_1';
     var _conn;
     var _clients = {};
     var _instruments = {};
@@ -53,6 +52,12 @@
 
     var _onClientLeft = function(data) {
       console.log('A client with id', data.client, 'left the room');
+      var instrument = _instruments[data.client];
+      if (instrument !== 'undefined') {
+        _sequencerView.removeInstrument(instrument);
+        _sequencer.addInstrument(instrument);
+        delete _instruments[data.client];
+      }
       var element = document.getElementById(data.client);
       _itemsContainer.removeChild(element);
     };
@@ -61,7 +66,7 @@
       console.log('Got a request for an instrument', data);
 
       var instrument = _sequencer.getRandomInstrument(data.client);
-      
+
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
         console.log(">>> Instrument", instrument);
@@ -74,7 +79,7 @@
       }
     };
 
-    var _onNote = function (data) {
+    var _onNote = function(data) {
       _sequencerView.updateNote(data.args);
       _sequencer.updateNote(data.args);
     };
@@ -83,8 +88,8 @@
 
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
 
-      _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://10.48.19.84:8181')
+      _conn = new mixr.net.Connection();
+      _conn.connect('http://10.48.19.160:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
@@ -98,7 +103,7 @@
 
       _sequencerView = new mixr.views.SequencerView(document.getElementById('sequencer-view')).initialize();
 
-      _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function (beat) {
+      _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function(beat) {
         _sequencerView.drawPlayhead(beat);
       });
     };

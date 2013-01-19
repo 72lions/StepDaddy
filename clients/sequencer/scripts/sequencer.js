@@ -26,7 +26,7 @@
     var _self = this;
     var _clients = {};
 
-    var samplesPath = '../common/resources/12-TR-909/'; 
+    var samplesPath = '../common/resources/12-TR-909/';
 
     var instrumentsConfig = [
         {
@@ -49,8 +49,8 @@
                 }, {
                     name: 'Tom Low',
                     sampleUrl: '909 LOWTOM1.wav'
-                }    
-            ]     
+                }
+            ]
         }, {
             type: 'samples',
             color: '#deadf0',
@@ -69,7 +69,7 @@
                     name: 'Tom 4',
                     sampleUrl: '909 HI.TOM4.wav'
                 }
-            ]     
+            ]
         }
         // , {
         //     type: 'synth',
@@ -95,7 +95,7 @@
         //     ]
         // }
     ];
-    
+
     this.initialize = function() {
 
         // Create context.
@@ -129,6 +129,15 @@
         };
 
         return tracks;
+    };
+
+    this.addInstrument = function(instrument) {
+        // Reset the notes of all the tracks
+        for (var n = 0, len = instrument.tracks.length; n < len; n += 1) {
+            var track = instrument.tracks[n];
+            instrument.tracks[n] = new mixr.models.Track(track.id, track.name, null, track.sampleUrl, track.volume);
+        }
+        _availableInstruments.push(instrument);
     };
 
     this.getRandomInstrument = function(clientId) {
@@ -234,9 +243,8 @@
     this.updateNote = function(data) {
         console.log('update note', data);
 
-        var trackId = data.trackId.split('-')[1]; 
-        var instrumentId = data.trackId.split('-')[0]; 
-
+        var trackId = data.trackId.split('-')[1];
+        var instrumentId = data.trackId.split('-')[0];
         // TODO check the values MTF
         _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
         // _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;

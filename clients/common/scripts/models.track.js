@@ -21,7 +21,7 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
-    
+
     /**
      * Initializes the model
      *
@@ -53,7 +53,7 @@
       return _notes;
     };
 
-    this.getBuffer = function() {  
+    this.getBuffer = function() {
       return _buffer;
     };
 

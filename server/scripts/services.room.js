@@ -111,6 +111,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       client.on('get_instrument', _onGetInstrument)
       .on('instrument', _onInstrument)
       .on('note', _onNote)
+      .on('disconnect', _onClientBye)
       .on('byebye', _onClientBye);
     };
 
