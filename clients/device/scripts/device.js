@@ -1,6 +1,5 @@
 (function() {
 
-
   mixr.Device = function() {
 
     var _client_id = 'Mixr_client_1';
@@ -45,11 +44,9 @@
     var _onConnect = function() {
       _client_id = document.getElementById('client_id').value;
       _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://10.48.19.160:8181')
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
-
-      var search = new mixr.controllers.Search(new mixr.models.Search(_conn)).initialize();
     };
 
     var _onRoomClosed = function(data) {
@@ -63,7 +60,6 @@
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
       document.getElementById('join_room').addEventListener('click', _onJoinRoom);
       document.getElementById('connect').addEventListener('click', _onConnect);
-      document.getElementById('search').focus();
 
     };
 

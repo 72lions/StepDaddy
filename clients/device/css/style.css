@@ -17,10 +17,28 @@
 section {
   height: 100%; }
 
+@-webkit-keyframes stepping {
+  from {
+    left: 0%; }
+
+  to {
+    left: 99.7%; } }
+
 #pattern-editor {
   display: none; }
   #pattern-editor table {
     width: 100%;
     height: 100%; }
+  #pattern-editor thead th {
+    height: 20px; }
+    #pattern-editor thead th.playhead {
+      position: relative;
+      left: 0%;
+      top: 0;
+      height: 20px;
+      -webkit-animation: stepping 10s steps(16, end) infinite;
+      background: #C8DEC0; }
   #pattern-editor td {
     border: 1px solid grey; }
+    #pattern-editor td:active, #pattern-editor td.active {
+      background: greenyellow; }
