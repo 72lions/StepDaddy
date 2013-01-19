@@ -55,8 +55,20 @@
     };
 
     var _onGetInstrument = function(data) {
-      console.log('ON GET INSTRUMENT [MIXER.JS]');
+      console.log('Got a request for an instrument', data);
+      var randomResponse = {
+        id: 'SomeRandomId',
+        name: 'The name',
+        tracksIds: [0]
+      };
+
+      _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: randomResponse});
+
     };
+
+    var _onInstrument = function(data) {
+      console.log('GOT THE INSTRUMENT', data);
+    }
 
     this.initialize = function() {
 

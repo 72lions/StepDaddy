@@ -41,6 +41,14 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
      * @private
      * @type {Object}
      */
+    var _roomOwners = {};
+
+    /**
+     * A hash map with all the sockets
+     *
+     * @private
+     * @type {Object}
+     */
     var _clients = {};
 
     /**
@@ -80,6 +88,14 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       _roomOwnerClient.send('get_instrument', {client: data.client});
     };
 
+    var _onInstrument = function(data) {
+      var receiver = _clients[data.args.receiver];
+      if (receiver) {
+        receiver.send('instrument', data.args.instrument);
+      }
+
+    };
+
     /**
      * Registers all the event listeners for a client
      *
@@ -90,6 +106,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
     var _addEventListeners = function(client) {
       console.log('Registering room specific event listeners for client', client.id);
       client.on('get_instrument', _onGetInstrument)
+      .on('instrument', _onInstrument)
       .on('byebye', _onClientBye);
     };
 
@@ -104,12 +121,20 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
      * @return {Room} This instance.
      */
     this.registerRoomOwner = function(client,  callback, errback) {
-
+      var alreadyExists = false;
       console.log('Registering as room owner the client with id', client.id);
 
-      _roomOwnerClient = client;
+      if (typeof _roomOwners[client.id] !== 'undefined') {
+        _roomOwners[client.id] = null;
+        alreadyExists = true;
+      }
 
-      _addEventListeners(client);
+      _roomOwnerClient = client;
+      _roomOwners[client.id] = client;
+
+      if (!alreadyExists) {
+        _addEventListeners(client);
+      }
 
       callback({room: this.id, client: client.id});
       return this;

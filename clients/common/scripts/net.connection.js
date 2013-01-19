@@ -156,6 +156,10 @@
       _self.emit(mixr.enums.Events.GET_INSTRUMENT, data);
     };
 
+    var _onInstrument = function(data) {
+      _self.emit(mixr.enums.Events.INSTRUMENT, data);
+    };
+
     /**
      * Is triggered when a command is executed and the results
      * are being send from the server.
@@ -203,7 +207,8 @@
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
       .on(mixr.enums.Events.CLIENT_JOINED, _onClientJointed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
-      .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument);
+      .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
+      .on(mixr.enums.Events.INSTRUMENT, _onInstrument);
 
       return this;
     };
@@ -259,9 +264,9 @@
       var timestamp = new Date().getTime() + Math.floor(Math.random() * 1500);
 
       _calls[timestamp] = {
-        args: args,
-        callback: callback,
-        errback: errback
+        args: args || {},
+        callback: callback || function() {},
+        errback: errback || function() {}
       };
 
       this.send(mixr.enums.Events.EXECUTE, {client: _clientId, call: call, args: args, id: timestamp});
