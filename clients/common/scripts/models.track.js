@@ -16,7 +16,7 @@
     this.id = id || '';
     this.name = name || '';
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    this.sampleURL = sampleUrl || '';
+    this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
 
     /**
@@ -26,8 +26,8 @@
      * @function
      * @return {mixr.controllers.Track} This instance of the model.
      */
-    this.initialize = function(sampleURL) {
-      this.sampleURL = sampleURL;
+    this.initialize = function(sampleUrl) {
+      this.sampleUrl = sampleUrl;
       this.notes = [];
       return this;
     };
@@ -36,6 +36,19 @@
       return _notes;
     };
 
-  };
+    this.loadSample = function(callback) {
+
+      var request = new XMLHttpRequest();
+      request.open("GET", this.sampleUrl, true);
+      request.responseType = "arraybuffer";
+
+      request.onload = function() {
+          var buffer = context.createBuffer(request.response, false);
+          callback(buffer);
+          console.log('sample loaded', buffer);
+      }
+
+      request.send();
+    };
 
 }());
