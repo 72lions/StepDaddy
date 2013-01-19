@@ -6,6 +6,7 @@
     var _instruments = [];
     var _availableInstruments = [];
     var _tracks = {};
+    var _context = null;
 
     var instrumentsConfig = [
     {
@@ -50,10 +51,11 @@
         ]
     }];
 
-    var samplesPath = '../common/resources/12-TR-909'; 
+    var samplesPath = '../common/resources/'; 
 
     this.initialize = function() {
       console.log('initialize Sequencer');
+      this._context = new webkitAudioContext();
       this.createInstruments();
     };
 
@@ -74,7 +76,7 @@
         var tracks = []; 
         for (var i = 0; i < tracksConfig.length; i++) {
             var config = tracksConfig[i];
-            var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, config.sampleUrl, 1.0);
+            var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, samplesPath + config.sampleUrl, 1.0);
             tracks.push(track);
         };
 
@@ -90,7 +92,7 @@
         var randomIndex = Math.floor(Math.random() * numAvailableInstruments);
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
-        randomInstrument.initialize();
+        randomInstrument.initialize(_context);
         console.log("Released random instrument", randomInstrument);
         return randomInstrument;
     }

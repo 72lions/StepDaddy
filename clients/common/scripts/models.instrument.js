@@ -27,14 +27,14 @@
      * @function
      * @return {mixr.controllers.Intrument} This instance of the model.
      */
-    this.initialize = function() {
-      this.loadTracks();
+    this.initialize = function(context) {
+      this.loadTracks(context);
       return this;
     };
 
-    this.loadTracks = function() {
+    this.loadTracks = function(context) {
       for (var i = 0; i < tracks.length; i++) {
-        tracks[i].loadSample(this.trackLoaded);
+        tracks[i].loadSample(context, this.trackLoaded);
       };
     };
 

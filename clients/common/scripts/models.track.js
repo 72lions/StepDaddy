@@ -18,6 +18,7 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
+    this.buffer = null;
 
     /**
      * Initializes the model
@@ -36,15 +37,15 @@
       return _notes;
     };
 
-    this.loadSample = function(callback) {
+    this.loadSample = function(context, callback) {
       var request = new XMLHttpRequest();
       request.open("GET", this.sampleUrl, true);
       request.responseType = "arraybuffer";
 
       request.onload = function() {
-          var buffer = context.createBuffer(request.response, false);
-          callback(buffer);
-          console.log('sample loaded', buffer);
+          this.buffer = context.createBuffer(request.response, false);
+          callback(this.buffer);
+          console.log('sample loaded', this.buffer);
       }
 
       request.send();
