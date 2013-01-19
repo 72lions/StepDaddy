@@ -5,6 +5,7 @@
 
     var _client_id = 'Mixr_client_1';
     var _isJoinedToRoom = null;
+    var _patternEditor;
     var _conn;
 
     var _onRegistered = function(data) {
@@ -28,8 +29,9 @@
     var _onRoomJoined = function(data) {
       _isJoinedToRoom = data.room;
       console.log('Room joined!', data);
+      _patternEditor = new mixr.controllers.PatternEditor(new mixr.models.PatternEditor(_conn)).initialize();
       $('#login').hide();
-      $('#pattern-editor').show();
+      _patternEditor.show();
     };
 
     var _onJoinRoom = function() {
@@ -43,7 +45,7 @@
     var _onConnect = function() {
       _client_id = document.getElementById('client_id').value;
       _conn = new mixr.net.Connection(_client_id);
-      _conn.connect('http://localhost:8181')
+      _conn.connect('http://10.48.19.160:8181')
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
 

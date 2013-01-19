@@ -84,7 +84,9 @@
      * This event is send when a client leaves the room on purpose.
      * @type {String}
      */
-    CLIENT_LEFT: 'client_left'
+    CLIENT_LEFT: 'client_left',
+
+    NOTE: 'note'
   };
 
 }());
