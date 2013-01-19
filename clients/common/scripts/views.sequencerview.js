@@ -70,6 +70,8 @@
       var $row = $('<tr>').attr('data-instrument-id', instrument.id)
                           .attr('data-track-id', track.id);
 
+      $row.append($('<td><h1>' + instrument.name + '</h1></td>'));
+
       for (var i = 0; i < noteCount; i++) {
         var $td = $('<td>');
         $row.append($td);
