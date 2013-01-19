@@ -31,7 +31,7 @@
     var instrumentsConfig = [
         {
             type: 'samples',
-            color: '#ffcc00',
+            color: 'hotpink',
             name: 'Drums',
             tracks: [
                 {
@@ -113,7 +113,7 @@
         _instruments = [];
         for (var i = 0; i < instrumentsConfig.length; i++) {
             var tracks = this.createTracks(i, instrumentsConfig[i].tracks);
-            var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks, 1.0);
+            var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks, 1.0, instrumentsConfig[i].type, instrumentsConfig[i].color);
             _instruments.push(instrument);
         };
 

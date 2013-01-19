@@ -80,6 +80,7 @@
         $row.append($td);
       }
 
+      $row.css('background', instrument.color);
       $table.append($row);
       trackCount++;
     };

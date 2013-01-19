@@ -65,14 +65,15 @@ html, body {
   }
   td {
     border: 1px solid #333;
+    background: #000;
     &:active,
     &.active {
-      background: #C8DEC0;
+      background: transparent;
     }
     // label
     &:nth-child(1) {
-      background: white;
       width: 100px;
+      background: transparent;
       h1 {
         font-weight: bold;
         text-transform: uppercase;
@@ -81,6 +82,7 @@ html, body {
         width: 100px;
         padding: 10px;
         box-sizing: border-box;
+        text-shadow: 0 1px #AAA;
       }
     }
     &:nth-child(2) {

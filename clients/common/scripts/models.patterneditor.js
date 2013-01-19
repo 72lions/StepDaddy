@@ -28,7 +28,7 @@
 
     var _onInstrument = function(data) {
       console.log('Got an instrument', data);
-      _self.instrument = new mixr.models.Instrument(data.id, data.name, data.tracks);
+      _self.instrument = new mixr.models.Instrument(data.id, data.name, data.tracks, data.volume, data.type, data.color);
       _self.emit(mixr.enums.Events.INSTRUMENT, _self.instrument);
     };
 

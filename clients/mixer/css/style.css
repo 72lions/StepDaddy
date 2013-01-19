@@ -55,15 +55,16 @@ html, body {
       background-color: #C8DEC0; }
   #pattern-editor td,
   #sequencer-view td {
-    border: 1px solid #333333; }
+    border: 1px solid #333333;
+    background: #000; }
     #pattern-editor td:active, #pattern-editor td.active,
     #sequencer-view td:active,
     #sequencer-view td.active {
-      background: #C8DEC0; }
+      background: transparent; }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
-      background: white;
-      width: 100px; }
+      width: 100px;
+      background: transparent; }
       #pattern-editor td:nth-child(1) h1,
       #sequencer-view td:nth-child(1) h1 {
         font-weight: bold;
