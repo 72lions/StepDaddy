@@ -55,7 +55,12 @@
 
     var _onGetInstrument = function(data) {
       console.log('Got a request for an instrument', data);
-      var instrument = new mixr.models.Instrument('SomeRandomId', 'The name', [0]);
+      var instrument = new mixr.models.Instrument(
+          'SomeRandomId',
+          'The name',
+          [
+            new mixr.models.Track('TrackId', 'Track 1', null, '', 1.0)
+          ]);
       _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
     };
 

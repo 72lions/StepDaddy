@@ -41,8 +41,13 @@
       return this;
     };
 
-    this.updateNote = function(value) {
-      _connection.execute(mixr.enums.Events.NOTE, this.instrument);
+    this.updateNote = function(volume, note) {
+      _connection.execute(mixr.enums.Events.NOTE, {
+        id: this.instrument.id,
+        trackId: this.instrument.tracks[0].id,
+        noteId: note,
+        volume: volume
+      });
     };
 
     /**

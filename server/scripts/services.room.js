@@ -87,6 +87,10 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       _roomOwnerClient.send('get_instrument', {client: data.client});
     };
 
+    var _onNote = function(data) {
+      _roomOwnerClient.send('note', {client: data.client, args: data.args});
+    };
+
     var _onInstrument = function(data) {
       var receiver = _clients[data.args.receiver];
       if (receiver) {
@@ -106,6 +110,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       console.log('Registering room specific event listeners for client', client.id);
       client.on('get_instrument', _onGetInstrument)
       .on('instrument', _onInstrument)
+      .on('note', _onNote)
       .on('byebye', _onClientBye);
     };
 
