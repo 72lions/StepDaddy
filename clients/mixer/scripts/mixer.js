@@ -54,6 +54,10 @@
       _itemsContainer.removeChild(element);
     };
 
+    var _onGetInstrument = function(data) {
+      console.log('ON GET INSTRUMENT [MIXER.JS]');
+    };
+
     this.initialize = function() {
 
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
@@ -65,7 +69,8 @@
           })
       .on(mixr.enums.Events.CLIENT_JOINED, _onClientJoined)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
-      .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft);
+      .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
+      .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument);
     };
 
   };

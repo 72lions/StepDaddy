@@ -75,6 +75,11 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       delete _clients[data.client];
     };
 
+    var _onGetInstrument = function(data) {
+      console.log('ON GET INSTRUMENT [ROOM.JS]');
+      _roomOwnerClient.send('get_instrument', {client: data.client});
+    };
+
     /**
      * Registers all the event listeners for a client
      *
@@ -84,7 +89,8 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
      */
     var _addEventListeners = function(client) {
       console.log('Registering room specific event listeners for client', client.id);
-      client.on('byebye', _onClientBye);
+      client.on('get_instrument', _onGetInstrument)
+      .on('byebye', _onClientBye);
     };
 
     /**
@@ -120,14 +126,18 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
      * @return {Room} This instance.
      */
     this.registerClient = function(client, callback, errback) {
-
+      var alreadyExists = false;
+      console.log('Need to register client!', client);
       if (typeof _clients[client.id] !== 'undefined') {
         _clients[client.id] = null;
+        alreadyExists = true;
       }
 
       _clients[client.id] = client;
 
-      _addEventListeners(client);
+      if (!alreadyExists) {
+        _addEventListeners(client);
+      }
 
       callback({room: this.id, client: client.id});
 

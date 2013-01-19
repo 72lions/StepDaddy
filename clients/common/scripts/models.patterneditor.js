@@ -22,6 +22,15 @@
      */
     var _connection = connection;
 
+    this.getInstrument = function() {
+      _connection.execute(mixr.enums.Events.GET_INSTRUMENT, {}, function(response) {
+        console.log('Success for get instrument', response);
+      }, function(error) {
+        console.log('error');
+      });
+      return this;
+    };
+
     /**
      * Initializes the model
      *
@@ -30,6 +39,7 @@
      * @return {mixr.controllers.Search} This instance of the controller.
      */
     this.initialize = function() {
+      this.getInstrument();
       return this;
     };
 

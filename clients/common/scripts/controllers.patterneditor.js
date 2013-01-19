@@ -46,6 +46,7 @@
      * @return {mixr.controllers.PatternEditor} This instance of the controller.
      */
     this.initialize = function() {
+      _model.initialize();
       view = new mixr.views.PatternEditor($('#pattern-editor'))
       .initialize();
       return this;

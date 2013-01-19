@@ -86,7 +86,9 @@
      */
     CLIENT_LEFT: 'client_left',
 
-    NOTE: 'note'
+    NOTE: 'note',
+
+    GET_INSTRUMENT: 'get_instrument'
   };
 
 }());
