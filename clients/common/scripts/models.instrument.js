@@ -6,7 +6,7 @@
    * @constructor
    * @class Instrument
    */
-  mixr.models.Instrument = function(id, name, tracks, volume) {
+  mixr.models.Instrument = function(id, name, tracks, volume, type, color) {
 
     /**
      * Mixins
@@ -17,6 +17,9 @@
     this.name = name || '';
     this.tracks = tracks || [];
     this.volume = volume || 0;
+    this.type = type || 'samples';
+    this.color = color || '#888';
+
     this.available = true;
     this.numTracksLoaded = 0;
 

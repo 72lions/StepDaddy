@@ -9,6 +9,7 @@
   mixr.models.Track = function(id, name, notes, sampleUrl, volume) {
 
     var _buffer = null;
+    var _self = this;
 
     /**
      * Mixins
@@ -20,11 +21,6 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
-
-    // this._buffer = null;
-    
-    var _self = this;
-    var _buffer = null;
     
     /**
      * Initializes the model
@@ -37,10 +33,6 @@
       this.sampleUrl = sampleUrl;
       this.notes = [];
       return this;
-    };
-
-    this.getNotes = function() {
-      return _notes;
     };
 
     this.loadSample = function(callback, context) {
@@ -57,8 +49,11 @@
       request.send();
     };
 
+    this.getNotes = function() {
+      return _notes;
+    };
+
     this.getBuffer = function() {  
-      console.log('_self', _self, _self.buffer);
       return _buffer;
     };
 

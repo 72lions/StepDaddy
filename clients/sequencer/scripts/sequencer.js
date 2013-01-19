@@ -20,52 +20,79 @@
 
     var _self = this;
 
-    var instrumentsConfig = [
-    {
-        name: 'HiHat',
-        tracks: [
-            {
-                name: 'HiHat',
-                sampleUrl: '909 HHCL 1.wav'
-            }        
-        ]
-    }, {
-        name: 'Kick',
-        tracks: [
-            {
-                name: 'Kick',
-                sampleUrl: '909 KIK1.wav'
-            }        
-        ]
-    }, {
-        name: 'Tom Hi',
-        tracks: [
-            {
-                name: 'Tom HI',
-                sampleUrl: '909 HI.TOM1.wav'
-            }        
-        ]
-    }, {
-        name: 'Snare',
-        tracks: [
-            {
-                name: 'Snare',
-                sampleUrl: '909 SD1.wav'
-            }        
-        ]
-    }, {
-        name: 'Tom Low',
-        tracks: [
-            {
-                name: 'Tom Low',
-                sampleUrl: '909 LOWTOM1.wav'
-            }        
-        ]
-    }];
-
     var samplesPath = '../common/resources/12-TR-909/'; 
 
+    var instrumentsConfig = [
+        {
+            type: 'samples',
+            color: '#ffcc00',
+            name: 'Drums',
+            tracks: [
+                {
+                    name: 'HiHat',
+                    sampleUrl: '909 HHCL 1.wav'
+                }, {
+                    name: 'Kick',
+                    sampleUrl: '909 KIK1.wav'
+                }, {
+                    name: 'Tom HI',
+                    sampleUrl: '909 HI.TOM1.wav'
+                }, {
+                    name: 'Snare',
+                    sampleUrl: '909 SD1.wav'
+                }, {
+                    name: 'Tom Low',
+                    sampleUrl: '909 LOWTOM1.wav'
+                }    
+            ]     
+        }, {
+            type: 'samples',
+            color: '#deadf0',
+            name: 'Toms',
+            tracks: [
+                {
+                    name: 'Tom 1',
+                    sampleUrl: '909 HI.TOM1.wav'
+                }, {
+                    name: 'Tom 2',
+                    sampleUrl: '909 HI.TOM2.wav'
+                }, {
+                    name: 'Tom 3',
+                    sampleUrl: '909 HI.TOM3.wav'
+                }, {
+                    name: 'Tom 4',
+                    sampleUrl: '909 HI.TOM4.wav'
+                }
+            ]     
+        }
+        // , {
+        //     type: 'synth',
+        //     color: '@c0ffee',
+        //     name: 'Nordic Lead',
+        //     tracks: [
+        //         {
+        //             name: 'C',
+        //             note: 'C-4'
+        //         }, {
+        //             name: 'D',
+        //             note: 'D-4'
+        //         }, {
+        //             name: 'E',
+        //             note: 'E-4'
+        //         }, {
+        //             name: 'F',
+        //             note: 'F-4'
+        //         }, {
+        //             name: 'G',
+        //             note: 'G-4'
+        //         }
+        //     ]
+        // }
+    ];
+    
     this.initialize = function() {
+
+        // Create context.
         _context = new webkitAudioContext();
 
         // Create master gain control.
@@ -73,7 +100,6 @@
         _masterGainNode.gain.value = 0.7;
         _masterGainNode.connect(_context.destination);
 
-        console.log('initialize Sequencer', _context);
         this.createInstruments();
     };
 
@@ -86,8 +112,6 @@
         };
 
         _availableInstruments = _instruments.concat();
-
-        console.log('Instruments', _instruments);
     };
 
     this.createTracks = function(instrumentId, tracksConfig) {
@@ -132,8 +156,6 @@
         // The sequence starts at startTime, so normalize currentTime so that it's 0 at the start of the sequence.
         currentTime -= _startTime;
 
-        // console.log(currentTime, '/', _noteTime, _noteTime < currentTime + 0.200);
-
         while (_noteTime < currentTime + 0.200) {
             // Convert noteTime to context time.
             var contextPlayTime = _noteTime + _startTime;
@@ -156,8 +178,6 @@
 
             _self.step();
         }
-
-        // console.log('this', this);
 
         setTimeout(_self.schedule, 0);
     };
@@ -185,10 +205,7 @@
         // Advance time by a 16th note...
         var secondsPerBeat = 60.0 / _tempo;
         _noteTime += 0.25 * secondsPerBeat;
-
         _noteIndex++;
-
-        console.log('>>>', _noteIndex);
 
         if (_noteIndex == _loopLength) {
             _noteIndex = 0;
@@ -197,9 +214,12 @@
     };
 
     this.updateNote = function (data) {
+        console.log('data', data);
         var trackId = data.trackId.split('-')[1]; 
+        var instrumentId = data.trackId.split('-')[0]; 
         // TODO check the values MTF
-        _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
+        // _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
+        _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;
     };
 
     this.initialize();

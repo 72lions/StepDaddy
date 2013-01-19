@@ -89,7 +89,7 @@
     NOTE: 'note',
 
     GET_INSTRUMENT: 'get_instrument',
-
+   
     INSTRUMENT: 'instrument'
   };
 
