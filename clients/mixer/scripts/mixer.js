@@ -69,6 +69,7 @@
 
     var _onNote = function (data) {
       _sequencerView.updateNote(data.args);
+      _sequencer.updateNote(data.args);
     };
 
     this.initialize = function() {

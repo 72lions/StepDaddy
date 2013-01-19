@@ -7,6 +7,18 @@
     var _availableInstruments = [];
     var _tracks = {};
     var _context = null;
+    var _masterGainNode = null;
+
+    var _currentTime = 0;
+    var _noteTime = 1;
+    var _noteIndex = 0;
+    var _startTime = 0;
+    var _tempo = 120;
+    var _loopLength = 16;
+    var _started = false;
+    var _lastDrawTime = -1;
+
+    var _self = this;
 
     var instrumentsConfig = [
     {
@@ -54,9 +66,15 @@
     var samplesPath = '../common/resources/12-TR-909/'; 
 
     this.initialize = function() {
-      _context = new webkitAudioContext();
-      console.log('initialize Sequencer', _context);
-      this.createInstruments();
+        _context = new webkitAudioContext();
+
+        // Create master gain control.
+        _masterGainNode = _context.createGainNode();
+        _masterGainNode.gain.value = 0.7;
+        _masterGainNode.connect(_context.destination);
+
+        console.log('initialize Sequencer', _context);
+        this.createInstruments();
     };
 
     this.createInstruments = function() {
@@ -92,22 +110,96 @@
         var randomIndex = Math.floor(Math.random() * numAvailableInstruments);
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
-        randomInstrument.initialize();
+        randomInstrument.initialize(this.start);
         randomInstrument.loadTracks(_context);
         console.log("Released random instrument", randomInstrument);
         return randomInstrument;
     };
 
+    this.start = function() {
+        console.log('Started!', this);
+        if (_started) return;
+        _started = true;
+        _noteTime = 0.0;
+        // _startTime = _context.currentTime + 0.160;
+        _startTime = _context.currentTime + 0.005;
+        _self.schedule();
+    };
+
+    this.schedule = function() {
+        var currentTime = _context.currentTime;
+
+        // The sequence starts at startTime, so normalize currentTime so that it's 0 at the start of the sequence.
+        currentTime -= _startTime;
+
+        // console.log(currentTime, '/', _noteTime, _noteTime < currentTime + 0.200);
+
+        while (_noteTime < currentTime + 0.200) {
+            // Convert noteTime to context time.
+            var contextPlayTime = _noteTime + _startTime;
+            
+            for (var i = 0; i < _instruments.length; i++) {
+                for (var j = 0; j < _instruments[i].tracks.length; j++) {
+                    var track = _instruments[i].tracks[j];
+                    var volume = track.notes[_noteIndex];
+                    if (volume > 0 && _instruments[i].isLoaded()) {
+                        _self.playNote(track, contextPlayTime, volume);
+                    }
+                }
+            }
+
+            // Attempt to synchronize drawing time with sound
+            if (_noteTime != _lastDrawTime) {
+                _lastDrawTime = _noteTime;
+                // drawPlayhead(_noteIndex);
+            }
+
+            _self.step();
+        }
+
+        // console.log('this', this);
+
+        setTimeout(_self.schedule, 0);
+    };
+
+    this.playNote = function(track, noteTime, volume) {
+        // Create the note
+        var voice = _context.createBufferSource();
+        voice.buffer = track.getBuffer();
+        
+        // Create a gain node.
+        var gainNode = _context.createGainNode();
+        // Connect the source to the gain node.
+        voice.connect(gainNode);
+        // Connect the gain node to the destination.
+        gainNode.connect(_context.destination);
+
+        // Reduce the volume.
+        gainNode.gain.value = volume;
+
+        // voice.connect(_context.destination);
+        voice.noteOn(noteTime);
+    };
+
     this.step = function() {
         // Advance time by a 16th note...
-        var secondsPerBeat = 60.0 / tempo;
-        noteTime += 0.25 * secondsPerBeat;
+        var secondsPerBeat = 60.0 / _tempo;
+        _noteTime += 0.25 * secondsPerBeat;
 
-        noteIndex++;
-        if (noteIndex == loopLength) {
-            noteIndex = 0;
-            pattern++;
+        _noteIndex++;
+
+        console.log('>>>', _noteIndex);
+
+        if (_noteIndex == _loopLength) {
+            _noteIndex = 0;
+            // pattern++;
         }
+    };
+
+    this.updateNote = function (data) {
+        var trackId = data.trackId.split('-')[1]; 
+        // TODO check the values MTF
+        _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
     };
 
     this.initialize();

@@ -20,8 +20,11 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
+
+    // this._buffer = null;
     
     var _self = this;
+    var _buffer = null;
     
     /**
      * Initializes the model
@@ -55,8 +58,9 @@
     };
 
     this.getBuffer = function() {  
+      console.log('_self', _self, _self.buffer);
       return _buffer;
-    }
+    };
 
   };
 

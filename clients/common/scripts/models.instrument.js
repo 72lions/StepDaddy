@@ -21,6 +21,8 @@
     this.numTracksLoaded = 0;
 
     var _self = this;
+    var _readyCallback = null;
+    var _isLoaded = false;
 
     /**
      * Initializes the model
@@ -29,7 +31,8 @@
      * @function
      * @return {mixr.controllers.Intrument} This instance of the model.
      */
-    this.initialize = function() {
+    this.initialize = function(readyCallback) {
+      _readyCallback = readyCallback;
       return this;
     };
 
@@ -43,11 +46,14 @@
       _self.numTracksLoaded++;
       if (_self.numTracksLoaded == _self.tracks.length) {
         console.log('All samples loaded.');
+        _readyCallback();
+        _isLoaded = true;
       }
-    }
+    };
 
-    // track.getBuffer();
-
+    this.isLoaded = function() {
+      return _isLoaded;
+    };
 
   };
 
