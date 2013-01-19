@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Mixer</title>
-  <!-- <link rel="stylesheet" href="css/style.css" /> -->
+  <link rel="stylesheet" href="css/style.css" />
+
   <style>
 
     .clear {
@@ -24,12 +25,12 @@
   <h1 id="room_title"></h1>
 
   <input type="button" value="Disconnect" id="disconnect"/>
-  <div class="clear" />
+  <div class="clear"></div>
 
   <div id="connected_clients">
   </div>
 
-  <section id="pattern-editor">
+  <section id="sequencer-view">
     <table>
     </table>
   </section>
@@ -47,10 +48,8 @@
 
   <script src="../common/scripts/models.track.js"></script>
   <script src="../common/scripts/models.instrument.js"></script>
-  <script src="../common/scripts/models.patterneditor.js"></script>
-
-  <script src="../common/scripts/controllers.patterneditor.js"></script>
-  <script src="../common/scripts/views.patterneditor.js"></script>
+  
+  <script src="../common/scripts/views.sequencerview.js"></script>
 
   <script src="../sequencer/scripts/sequencer.js"></script>
   <script src="scripts/mixer.js"></script>

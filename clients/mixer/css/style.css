@@ -1,0 +1,55 @@
+html, body {
+  background: black;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+@-webkit-keyframes stepping {
+  from {
+    left: 0%; }
+
+  to {
+    left: 100%; } }
+
+#pattern-editor,
+#sequencer-view {
+  height: 100%;
+  display: none; }
+  #pattern-editor table,
+  #sequencer-view table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; }
+  #pattern-editor thead th,
+  #sequencer-view thead th {
+    height: 20px; }
+    #pattern-editor thead th#playhead,
+    #sequencer-view thead th#playhead {
+      position: relative;
+      left: 0%;
+      top: 0;
+      height: 20px;
+      -webkit-animation-name: stepping;
+      -webkit-animation-timing-function: steps(16, end);
+      -webkit-animation-iteration-count: infinite;
+      background: #C8DEC0; }
+  #pattern-editor td,
+  #sequencer-view td {
+    border: 1px solid #333333; }
+    #pattern-editor td:active, #pattern-editor td.active,
+    #sequencer-view td:active,
+    #sequencer-view td.active {
+      background: #C8DEC0; }
+    #pattern-editor td:nth-child(1),
+    #sequencer-view td:nth-child(1) {
+      border-left: 1px solid #f9f9f9; }
+    #pattern-editor td:nth-child(8),
+    #sequencer-view td:nth-child(8) {
+      border-right: 1px solid #f9f9f9; }

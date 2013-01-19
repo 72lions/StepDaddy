@@ -9,6 +9,9 @@
 
     var _itemsContainer = document.getElementById('connected_clients');
 
+    var _sequencer;
+    var _sequencerView;
+
     var _onRoomCreated = function(data) {
       console.log('The room was created:', data.room);
       document.getElementById('room_title').innerText = data.room;
@@ -58,9 +61,14 @@
       var instrument = _sequencer.getRandomInstrument();
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
+        _sequencerView.addInstrument(instrument);
       } else {
         console.log('No more instruments available.');
       }
+    };
+
+    var _onNote = function (data) {
+      _sequencerView.updateNote(data.args);
     };
 
     this.initialize = function() {
@@ -75,11 +83,12 @@
       .on(mixr.enums.Events.CLIENT_JOINED, _onClientJoined)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
-      .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument);
+      .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
+      .on(mixr.enums.Events.NOTE, _onNote);
 
       _sequencer = new mixr.Sequencer();
 
-      _patternEditor = new mixr.controllers.PatternEditor(new mixr.models.PatternEditor(_conn)).initialize();
+      _sequencerView = new mixr.views.SequencerView(document.getElementById('sequencer-view')).initialize();
     };
 
   };
