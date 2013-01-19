@@ -12,7 +12,7 @@
         tracks: [
             {
                 name: 'HiHat',
-                sampleURL: '909 HHCL 1.wav'
+                sampleUrl: '909 HHCL 1.wav'
             }        
         ]
     }, {
@@ -20,7 +20,7 @@
         tracks: [
             {
                 name: 'Kick',
-                sampleURL: '909 KIK1.wav'
+                sampleUrl: '909 KIK1.wav'
             }        
         ]
     }, {
@@ -28,7 +28,7 @@
         tracks: [
             {
                 name: 'Tom HI',
-                sampleURL: '909 HI.TOM1.wav'
+                sampleUrl: '909 HI.TOM1.wav'
             }        
         ]
     }, {
@@ -36,7 +36,7 @@
         tracks: [
             {
                 name: 'Snare',
-                sampleURL: '909 SD1.wav'
+                sampleUrl: '909 SD1.wav'
             }        
         ]
     }, {
@@ -44,7 +44,7 @@
         tracks: [
             {
                 name: 'Tom Low',
-                sampleURL: '909 LOWTOM1.wav'
+                sampleUrl: '909 LOWTOM1.wav'
             }        
         ]
     }];
@@ -60,7 +60,7 @@
         _instruments = [];
         for (var i = 0; i < instrumentsConfig.length; i++) {
             var tracks = this.createTracks(i, instrumentsConfig[i].tracks);
-            var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks);
+            var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks, 1.0);
             _instruments.push(instrument);
         };
 
@@ -70,11 +70,18 @@
     this.createTracks = function(instrumentId, tracksConfig) {
         var tracks = []; 
         for (var i = 0; i < tracksConfig.length; i++) {
-            var track = new mixr.models.Track(instrumentId + ':' + i, tracksConfig[i]);
+            var config = tracksConfig[i];
+            var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, config.sampleUrl, 1.0);
             tracks.push(track);
         };
 
         return tracks;
+    }
+
+    this.getRandomInstrument = function() {
+        var numAvailableInstruments = _instruments.length;
+        var randomInstrument = _instruments[Math.floor(Math.random() * numAvailableInstruments)];
+        
     }
 
     this.initialize();
