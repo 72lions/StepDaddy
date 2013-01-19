@@ -3,7 +3,9 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
-  overflow-x: hidden;
+  
+  font-family: helvetica neue, helvetica;
+  //overflow-x: hidden;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -63,43 +65,57 @@ html, body {
       }
     }
   }
+
   td {
     border: 1px solid #333;
     background: #000;
+
+    &:nth-child(1),
     &:active,
     &.active {
       background: transparent;
       position: relative;
+      /* gloss
       &:after {
         content: "";
         position: absolute;
         width: 100%;
         height: 50%;
-        background: rgba(255, 255, 255, .2);
+        background: rgba(255, 255, 255, .1);
         top: 0;
-      }
+      }*/
     }
 
     // label
     &:nth-child(1) {
-      width: 100px;
-      background: transparent;
+      width: 60px;
       h1 {
+        font-size: 10px;
         font-weight: bold;
         text-transform: uppercase;
         text-overflow: ellipsis;
         overflow: hidden;
-        width: 100px;
+        width: 60px;
         padding: 10px;
         box-sizing: border-box;
         text-shadow: 0 1px #AAA;
       }
+
+      @media (min-width: 580px) {
+        width: 100px;
+        h1 {
+          font-size: 16px;
+          width: 100px;
+        }
+      }
     }
+
+    /* mark 1st beat in bars
     &:nth-child(2) {
       border-left: 1px solid #f9f9f9;
     }
     &:nth-child(9) {
       border-right: 1px solid #f9f9f9;
-    }
+    }*/
   }
 }

@@ -26,12 +26,13 @@
    
 
     this.drawPlayhead = function (beat) {
+  /*
       var labelWidth = $table.find('h1').width();
       var noteWidth = ($(window).width() - labelWidth) / noteCount;
       
       var offset = labelWidth + noteWidth * (beat);
 
-/*
+
       if (!$playhead) {
         $playhead = $('#playhead');
         $playhead.css('width', noteWidth);

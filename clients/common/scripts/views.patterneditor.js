@@ -23,11 +23,17 @@
 
     var _onToggleNote = function() {
 
+      var noteIndex = $(this).index();
+
+      if (noteIndex === 0) return;
+
+      noteIndex--; // compensate for label
+
       var isItOn = $(this).toggleClass('active').hasClass('active');
-      console.log('You clicked me dude', this, $(this).index(), $(this).parent().index(), isItOn ? 1 : 0);
+      console.log('You clicked me dude', this, noteIndex, $(this).parent().index(), isItOn ? 1 : 0);
       _self.emit(mixr.enums.Events.NOTE, {
         volume: isItOn ? 1 : 0,
-        note: $(this).index(),
+        note: noteIndex,
         trackId: $(this).parent().data('id')
       });
     };
@@ -43,14 +49,23 @@
     };
 
 
+    /*
     var _startPlayHead = function () {
       var playheadDuration = 60 / 120 * 4;
       var $playhead = $('#playhead');
       $playhead.css('-webkit-animation-duration', playheadDuration + 's');
     };
+    */
+    this.drawPlayhead = function (beat) {
+      var $tds = $('th:nth-child(' + (beat + 2) + ')');
+      $tds.on('webkitAnimationEnd', function () {
+        $tds.removeClass('beat');
+      });
+      $tds.addClass('beat');
+    };
 
 
-    this.addTrack = function (track) {
+    this.addTrack = function (track, color) {
       console.log('addTrack', track);
 
       // Check if we already have a row for that track
@@ -63,6 +78,9 @@
       }
 
       var $row = $('<tr>').attr('data-id', track.id);
+
+      $row.append($('<td><h1>' + track.name + '</h1></td>'));
+
       for (var i = 0; i < track.notes.length; i++) {
         var $td = $('<td>');
         if (track.notes[i] === 1) {
@@ -71,6 +89,7 @@
         $row.append($td);
       }
 
+      $row.css('background', color);
       $table.append($row);
       trackCount++;
     };
@@ -94,7 +113,7 @@
     this.show = function() {
       $item.show();
 
-      _startPlayHead();
+      //_startPlayHead();
 
       return this;
     };
