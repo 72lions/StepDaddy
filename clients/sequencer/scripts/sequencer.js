@@ -29,48 +29,48 @@
     var samplesPath = '../common/resources/12-TR-909/';
 
     var instrumentsConfig = [
-        // {
-        //     type: 'samples',
-        //     color: 'hotpink',
-        //     name: 'Drums',
-        //     tracks: [
-        //         {
-        //             name: 'HiHat',
-        //             sampleUrl: '909 HHCL 1.wav'
-        //         }, {
-        //             name: 'Kick',
-        //             sampleUrl: '909 KIK1.wav'
-        //         }, {
-        //             name: 'Tom HI',
-        //             sampleUrl: '909 HI.TOM1.wav'
-        //         }, {
-        //             name: 'Snare',
-        //             sampleUrl: '909 SD1.wav'
-        //         }, {
-        //             name: 'Tom Low',
-        //             sampleUrl: '909 LOWTOM1.wav'
-        //         }    
-        //     ]     
-        // }, {
-        //     type: 'samples',
-        //     color: '#deadf0',
-        //     name: 'Toms',
-        //     tracks: [
-        //         {
-        //             name: 'Tom 1',
-        //             sampleUrl: '909 HI.TOM1.wav'
-        //         }, {
-        //             name: 'Tom 2',
-        //             sampleUrl: '909 HI.TOM2.wav'
-        //         }, {
-        //             name: 'Tom 3',
-        //             sampleUrl: '909 HI.TOM3.wav'
-        //         }, {
-        //             name: 'Tom 4',
-        //             sampleUrl: '909 HI.TOM4.wav'
-        //         }
-        //     ]     
-        // },
+        {
+            type: 'samples',
+            color: 'hotpink',
+            name: 'Drums',
+            tracks: [
+                {
+                    name: 'HiHat',
+                    sampleUrl: '909 HHCL 1.wav'
+                }, {
+                    name: 'Kick',
+                    sampleUrl: '909 KIK1.wav'
+                }, {
+                    name: 'Tom HI',
+                    sampleUrl: '909 HI.TOM1.wav'
+                }, {
+                    name: 'Snare',
+                    sampleUrl: '909 SD1.wav'
+                }, {
+                    name: 'Tom Low',
+                    sampleUrl: '909 LOWTOM1.wav'
+                }
+            ]
+        }, {
+            type: 'samples',
+            color: '#deadf0',
+            name: 'Toms',
+            tracks: [
+                {
+                    name: 'Tom 1',
+                    sampleUrl: '909 HI.TOM1.wav'
+                }, {
+                    name: 'Tom 2',
+                    sampleUrl: '909 HI.TOM2.wav'
+                }, {
+                    name: 'Tom 3',
+                    sampleUrl: '909 HI.TOM3.wav'
+                }, {
+                    name: 'Tom 4',
+                    sampleUrl: '909 HI.TOM4.wav'
+                }
+            ]
+        },
         {
             type: 'synth',
             color: '#c0ffee',
@@ -218,7 +218,7 @@
                             _self.playNote(track, contextPlayTime, volume);
                         }
                     } else if (_instruments[i].type === 'synth') {
-                        
+
                         if (volume > 0) {
                             _instruments[i].play(track.note);
                         } else {

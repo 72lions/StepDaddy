@@ -7,8 +7,6 @@
     var _clients = {};
     var _instruments = {};
 
-    var _itemsContainer = document.getElementById('connected_clients');
-
     var _sequencer;
     var _sequencerView;
 
@@ -38,12 +36,6 @@
         console.log('A client with id', data.client, 're-joined the room');
       } else {
         console.log('A client with id ', data.client, 'joined the room');
-        var element = '<div id="' + data.client + '" class="connected_client">' +
-            '<span class="indicator"></span>' +
-            '<label class="client_name">' + data.client + '</label>' +
-            '</div>';
-
-        _itemsContainer.innerHTML += element;
       }
 
       _clients[data.client] = true;
@@ -53,13 +45,11 @@
     var _onClientLeft = function(data) {
       console.log('A client with id', data.client, 'left the room');
       var instrument = _instruments[data.client];
-      if (instrument !== 'undefined') {
+      if (typeof instrument !== 'undefined') {
         _sequencerView.removeInstrument(instrument);
         _sequencer.addInstrument(instrument);
         delete _instruments[data.client];
       }
-      var element = document.getElementById(data.client);
-      _itemsContainer.removeChild(element);
     };
 
     var _onGetInstrument = function(data) {
@@ -87,7 +77,7 @@
     this.initialize = function() {
 
       _conn = new mixr.net.Connection();
-      _conn.connect('http://10.48.19.121:8181')
+      _conn.connect('http://10.48.19.160:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
