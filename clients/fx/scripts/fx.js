@@ -67,6 +67,11 @@
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
 
+      $(document).on('scroll', function (e) {
+        e.preventDefault();
+      });
+      document.ontouchmove = function(e) {e.preventDefault()};
+
       return this;
     };
 
