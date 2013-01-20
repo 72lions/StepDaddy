@@ -53,7 +53,10 @@
           _synth.vco2.set_fine(53.2); 
           _synth.vco2.set_fine(48); 
           _synth.filter.set_amount(30); 
-          _synth.eg.set_d(12); 
+          _synth.eg.set_d(12);
+          console.log('Synth ready.');
+          _isLoaded = true;
+          _readyCallback();
       }
     };
 
@@ -61,20 +64,22 @@
       _self.numTracksLoaded++;
       if (_self.numTracksLoaded == _self.tracks.length) {
         console.log('All samples loaded.');
-        _readyCallback();
         _isLoaded = true;
+        _readyCallback();
       }
     };
 
     this.play = function(note) {
       if (this.type === 'synth' && _synth) {
+       // _synth.setVolume(100);
        _synth.play(note);
       }
     };
 
     this.stop = function() {
       if (this.type === 'synth' && _synth) {
-       _synth.stop();
+       // _synth.setVolume(0);
+       // _synth.stop();
       }
     };
 

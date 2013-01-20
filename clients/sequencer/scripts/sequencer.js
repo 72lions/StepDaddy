@@ -73,24 +73,39 @@
         // },
         {
             type: 'synth',
-            color: '@c0ffee',
+            color: '#c0ffee',
             name: 'Nordic Lead',
             tracks: [
                 {
-                 name: 'A',
-                 note: '0'
+                 name: 'A2',
+                 note: 0
                 }, {
-                 name: 'C',
-                 note: '3'
+                 name: 'C2',
+                 note: 3
                 }, {
-                 name: 'D',
-                 note: '5'
+                 name: 'D2',
+                 note: 5
                 }, {
-                 name: 'E',
-                 note: '7'
+                 name: 'E2',
+                 note: 7
                 }, {
-                 name: 'G',
-                 note: '10'
+                 name: 'G2',
+                 note: 10
+                }, {
+                 name: 'A3',
+                 note: 12
+                }, {
+                 name: 'C3',
+                 note: 15
+                }, {
+                 name: 'D3',
+                 note: 17
+                }, {
+                 name: 'E3',
+                 note: 19
+                }, {
+                 name: 'G3',
+                 note: 21
                 }
             ]
         }
@@ -203,9 +218,11 @@
                             _self.playNote(track, contextPlayTime, volume);
                         }
                     } else if (_instruments[i].type === 'synth') {
-                        _instruments[i].stop();
+                        
                         if (volume > 0) {
                             _instruments[i].play(track.note);
+                        } else {
+                            _instruments[i].stop();
                         }
                     }
                 }

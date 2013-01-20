@@ -233,6 +233,11 @@ EG.prototype.next = function() {
 			}
 			break;
 		case EGM.Sustain:
+			this.gain -= this.r_delta;
+			if (this.gain <= 0.0) {
+				this.gain = 0.0;
+				this.mode = EGM.Idle;
+			}
 			break;
 		case EGM.Release:
 			this.gain -= this.r_delta;
@@ -409,4 +414,8 @@ WebSynth.prototype.play = function(n) {
 WebSynth.prototype.stop = function() {
 	this.eg.note_off();
 	this.feg.note_off();
+};
+
+WebSynth.prototype.setVolume = function(volume) {
+	this.volume.set(volume);
 };
