@@ -63,6 +63,11 @@
         _yValue = Math.min(1, _yValue);
 
         _self.emit(mixr.enums.Events.MODIFIER_CHANGE, {id: _id, x: _xValue, y: _yValue});
+
+        clearTimeout(timer);
+        var timer = setTimeout(function () {
+          $('label', $item).text(Math.round(_xValue*100)/100 + ' - ' + Math.round(_yValue*100)/100);
+        }, 0);
       }
 
     };
