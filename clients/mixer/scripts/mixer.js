@@ -74,6 +74,10 @@
       _sequencer.updateNote(data.args);
     };
 
+    var _onModifierChange = function(data) {
+      console.log('on modifier change', data);
+    };
+
     this.initialize = function() {
 
       _conn = new mixr.net.Connection();
@@ -85,7 +89,8 @@
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
-      .on(mixr.enums.Events.NOTE, _onNote);
+      .on(mixr.enums.Events.NOTE, _onNote)
+      .on(mixr.enums.Events.MODIFIER_CHANGE, _onModifierChange);
 
       _sequencer = new mixr.Sequencer();
 

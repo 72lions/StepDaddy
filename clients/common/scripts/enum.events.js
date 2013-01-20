@@ -92,7 +92,9 @@
 
     INSTRUMENT: 'instrument',
 
-    SEQUENCER_BEAT: 'seq_beat'
+    SEQUENCER_BEAT: 'seq_beat',
+
+    MODIFIER_CHANGE: 'modifier_change'
   };
 
 }());
