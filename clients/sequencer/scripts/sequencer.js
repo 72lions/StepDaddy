@@ -111,6 +111,75 @@
         // }
     ];
 
+    var effectsConfig = [
+        {
+            id: 0,
+            name: 'Delay',
+            y: {
+                name: 'Amount',
+                param: 'delayAmount',
+                min: 0,
+                max: 1
+            },
+            x: {
+                name: 'Time',
+                param: 'delayTime',
+                min: 0,
+                max: 1000
+            }
+        }, {
+            id: 1,
+            name: 'Filter',
+            y: {
+                name: 'filterCutoff',
+                min: 0,
+                max: 1
+            },
+            x: {
+                name: 'filterFreq',
+                min: 0,
+                max: 2000
+            }
+        }, {
+            id: 2,
+            name: 'Reverb',
+            y: {
+                name: 'reverbAmount',
+                min: 0,
+                max: 0
+            },
+            x: {
+                name: '',
+                min: 0,
+                max: 0
+            }
+        }, {
+            id: 3,
+            name: '',
+            y: {
+                name: '',
+                min: 0,
+                max: 0
+            },
+            x: {
+                name: '',
+                min: 0,
+                max: 0
+            }
+        }
+    ];
+
+    // FX
+
+    var delayAmount = 0;
+    var delayTime = 0;
+
+    var filterCutoff = 0;
+    var filterFreq = 0;
+
+    var reverbAmount = 0;
+
+
     this.initialize = function() {
 
         // Create context.
@@ -309,8 +378,23 @@
 
     this.updateFxParam = function(data) {
         console.log('update fx param', data);
-    };
 
+        var fxConfig = effectsConfig[data.id];
+        paramX = fxConfig.x.param;
+        paramY = fxConfig.y.param;
+        valueX = this.interpolate(data.x, fxConfig.x.min, fxConfig.x.max);
+        valueY = this.interpolate(data.y, fxConfig.y.min, fxConfig.y.max);
+        this[paramX] = valueX;
+        this[paramY] = valueY;
+
+        console.log('update', paramX, ':', valueX);
+        console.log('update', paramY, ':', valueY);
+    };
+        
+    this.interpolate = function(value, minimum, maximum) {
+        return minimum + (maximum - minimum) * value;
+    }
+        
     this.initialize();
   };
 

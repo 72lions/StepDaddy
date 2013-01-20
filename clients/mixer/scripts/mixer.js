@@ -74,10 +74,14 @@
       _sequencer.updateNote(data.args);
     };
 
+    var _onFxUpdate = function(data) {
+      _sequencer.updateFxParam(data.args);
+    };
+
     this.initialize = function() {
 
       _conn = new mixr.net.Connection();
-      _conn.connect('http://10.48.19.121:8181')
+      _conn.connect('http://10.48.19.84:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
@@ -85,7 +89,8 @@
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed)
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
-      .on(mixr.enums.Events.NOTE, _onNote);
+      .on(mixr.enums.Events.NOTE, _onNote)
+      .on(mixr.enums.Events.FX_UPDATE, _onFxUpdate);
 
       _sequencer = new mixr.Sequencer();
 
