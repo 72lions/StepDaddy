@@ -70,45 +70,45 @@
                     sampleUrl: '909 HI.TOM4.wav'
                 }
             ]
-        },
-        {
-            type: 'synth',
-            color: '#c0ffee',
-            name: 'Nordic Lead',
-            tracks: [
-                {
-                 name: 'A2',
-                 note: 0
-                }, {
-                 name: 'C2',
-                 note: 3
-                }, {
-                 name: 'D2',
-                 note: 5
-                }, {
-                 name: 'E2',
-                 note: 7
-                }, {
-                 name: 'G2',
-                 note: 10
-                }, {
-                 name: 'A3',
-                 note: 12
-                }, {
-                 name: 'C3',
-                 note: 15
-                }, {
-                 name: 'D3',
-                 note: 17
-                }, {
-                 name: 'E3',
-                 note: 19
-                }, {
-                 name: 'G3',
-                 note: 21
-                }
-            ]
         }
+        // ,{
+        //     type: 'synth',
+        //     color: '#c0ffee',
+        //     name: 'Nordic Lead',
+        //     tracks: [
+        //         {
+        //          name: 'A2',
+        //          note: 0
+        //         }, {
+        //          name: 'C2',
+        //          note: 3
+        //         }, {
+        //          name: 'D2',
+        //          note: 5
+        //         }, {
+        //          name: 'E2',
+        //          note: 7
+        //         }, {
+        //          name: 'G2',
+        //          note: 10
+        //         }, {
+        //          name: 'A3',
+        //          note: 12
+        //         }, {
+        //          name: 'C3',
+        //          note: 15
+        //         }, {
+        //          name: 'D3',
+        //          note: 17
+        //         }, {
+        //          name: 'E3',
+        //          note: 19
+        //         }, {
+        //          name: 'G3',
+        //          note: 21
+        //         }
+        //     ]
+        // }
     ];
 
     this.initialize = function() {
@@ -158,9 +158,34 @@
         // Reset the notes of all the tracks
         for (var n = 0, len = instrument.tracks.length; n < len; n += 1) {
             var track = instrument.tracks[n];
-            instrument.tracks[n] = new mixr.models.Track(track.id, track.name, null, track.sampleUrl, track.volume);
+            instrument.tracks[n].resetNotes()
         }
         _availableInstruments.push(instrument);
+    };
+
+    this.getNextInstrument = function(clientId) {
+        if (typeof _clients[clientId] !== 'undefined') {
+            return _clients[clientId];
+        }
+
+        var numAvailableInstruments = _availableInstruments.length;
+        if (numAvailableInstruments === 0) {
+            console.log("No more instruments available");
+            return;
+        }
+
+        var nextInstrument = _availableInstruments[0];
+        _availableInstruments.shift();
+
+        // Initialize the instrument and call start when ready.
+        nextInstrument.initialize(this.start);
+        // Pass the context the instrument.
+        nextInstrument.setup(_context);
+
+        console.log("Released random instrument", nextInstrument);
+
+        _clients[clientId] = nextInstrument;
+        return nextInstrument;
     };
 
     this.getRandomInstrument = function(clientId) {
@@ -178,8 +203,9 @@
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
 
+        // Initialize the instrument and call start when ready.
         randomInstrument.initialize(this.start);
-
+        // Pass the context the instrument.
         randomInstrument.setup(_context);
 
         console.log("Released random instrument", randomInstrument);
@@ -279,6 +305,10 @@
         // TODO check the values MTF
         _instruments[data.id].tracks[trackId].notes[data.noteId] = data.volume;
         // _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;
+    };
+
+    this.updateFxParam = function(data) {
+        console.log('update fx param', data);
     };
 
     this.initialize();
