@@ -32,7 +32,7 @@ button {
 
 @-webkit-keyframes beat {
   from {
-    background: rgba(255, 255, 255, 0.8); }
+    background: white; }
 
   to {
     background: rgba(255, 255, 255, 0); } }
@@ -55,16 +55,15 @@ button {
     border-collapse: collapse; }
   #pattern-editor thead th,
   #sequencer-view thead th {
-    height: 20px; }
+    height: 10px; }
     #pattern-editor thead th#playhead,
     #sequencer-view thead th#playhead {
       position: relative;
       left: 0%;
       top: 0;
-      height: 20px;
+      height: 10px;
       -webkit-animation-iteration-count: infinite;
-      -webkit-animation-duration: 2s;
-      background-color: #C8DEC0; }
+      -webkit-animation-duration: 2s; }
   #pattern-editor td,
   #sequencer-view td {
     border: 1px solid #333333;
@@ -102,9 +101,11 @@ button {
         text-overflow: ellipsis;
         overflow: hidden;
         width: 60px;
-        padding: 10px;
+        padding: 0 5px;
         box-sizing: border-box;
-        text-shadow: 0 1px #aaaaaa; }
+        text-shadow: 0 1px #aaaaaa;
+        margin: 0;
+        text-align: center; }
       @media (min-width: 580px) {
         #pattern-editor td:nth-child(1),
         #sequencer-view td:nth-child(1) {

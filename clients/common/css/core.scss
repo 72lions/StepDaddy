@@ -35,7 +35,7 @@ button {
     to { left: 100% }
 }
 @-webkit-keyframes beat {
-    from { background: rgba(255,255,255,0.8); }
+    from { background: rgba(255,255,255,1); }
     to { background: rgba(255,255,255,0); }
 }
 .beat {
@@ -60,19 +60,17 @@ button {
 
   thead {
     th {
-      height: 20px;
+      height: 10px;
       &#playhead {
         position: relative;
         left: 0%;
         top: 0;
-        height: 20px;
+        height: 10px;
         
         //-webkit-animation-name: stepping;
         //-webkit-animation-timing-function: steps(16, end);
         -webkit-animation-iteration-count: infinite;
         -webkit-animation-duration: 2s;
-        
-        background-color: #C8DEC0;
       }
     }
   }
@@ -107,9 +105,11 @@ button {
         text-overflow: ellipsis;
         overflow: hidden;
         width: 60px;
-        padding: 10px;
+        padding: 0 5px;
         box-sizing: border-box;
         text-shadow: 0 1px #AAA;
+        margin: 0;
+        text-align: center;
       }
 
       @media (min-width: 580px) {
