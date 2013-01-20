@@ -26,7 +26,7 @@
     var _self = this;
     var _clients = {};
 
-    var samplesPath = '../common/resources/12-TR-909/';
+    var samplesPath = '../common/resources/';
 
     var instrumentsConfig = [
         {
@@ -36,19 +36,56 @@
             tracks: [
                 {
                     name: 'HiHat',
-                    sampleUrl: '909 HHCL 1.wav'
+                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
                 }, {
                     name: 'Kick',
-                    sampleUrl: '909 KIK1.wav'
+                    sampleUrl: '12-TR-909/909 KIK1.wav'
                 }, {
                     name: 'Tom HI',
-                    sampleUrl: '909 HI.TOM1.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
                 }, {
                     name: 'Snare',
-                    sampleUrl: '909 SD1.wav'
+                    sampleUrl: '12-TR-909/909 SD1.wav'
                 }, {
                     name: 'Tom Low',
-                    sampleUrl: '909 LOWTOM1.wav'
+                    sampleUrl: '12-TR-909/909 LOWTOM1.wav'
+                }
+            ]
+        }, {
+            type: 'samples',
+            color: 'navyblue',
+            name: 'Bass synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_1.mp3'
+                }, {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_2.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_3.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_4.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_5.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_6.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_7.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_8.mp3'
                 }
             ]
         }, {
@@ -58,16 +95,16 @@
             tracks: [
                 {
                     name: 'Tom 1',
-                    sampleUrl: '909 HI.TOM1.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
                 }, {
                     name: 'Tom 2',
-                    sampleUrl: '909 HI.TOM2.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM2.wav'
                 }, {
                     name: 'Tom 3',
-                    sampleUrl: '909 HI.TOM3.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM3.wav'
                 }, {
                     name: 'Tom 4',
-                    sampleUrl: '909 HI.TOM4.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM4.wav'
                 }
             ]
         }
