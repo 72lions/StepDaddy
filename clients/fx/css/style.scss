@@ -7,16 +7,16 @@
   #modifiers {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     display: flex;
     display: -webkit-flex;
-
   }
 
   .fx-panel {
     flex: 1;
-    border: rgba(255, 255, 255, 0.8);
     -webkit-flex: 1;
+
+    border: rgba(255, 255, 255, 0.8);
+    height: 50%;
     margin: 4px;
     background-color: #ccc;
     border-radius: 4px;
