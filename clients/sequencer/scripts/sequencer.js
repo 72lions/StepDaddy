@@ -31,6 +31,29 @@
     var instrumentsConfig = [
         {
             type: 'samples',
+            color: 'hotpink',
+            name: 'Drum kit',
+            tracks: [
+                {
+                    name: 'Kick',
+                    sampleUrl: '12-TR-909/909 KIK2.wav'
+                }, {
+                    name: 'Snare',
+                    sampleUrl: '12-TR-909/909 SD1.wav'
+                },  {
+                    name: 'Snare long',
+                    sampleUrl: '12-TR-909/909 SD3.wav'
+                }, {
+                    name: 'HiHat',
+                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
+                }, {
+                    name: 'HiHat open',
+                    sampleUrl: '12-TR-909/909 HHOP.wav'
+                },
+            ]
+        },
+        {
+            type: 'samples',
             color: '#AADB53',
             name: 'Lead synth',
             tracks: [
@@ -148,28 +171,6 @@
             ]   
         }, {
             type: 'samples',
-            color: 'hotpink',
-            name: 'Drum kit',
-            tracks: [
-                {
-                    name: 'Kick',
-                    sampleUrl: '12-TR-909/909 KIK2.wav'
-                }, {
-                    name: 'Snare',
-                    sampleUrl: '12-TR-909/909 SD1.wav'
-                },  {
-                    name: 'Snare long',
-                    sampleUrl: '12-TR-909/909 SD3.wav'
-                }, {
-                    name: 'HiHat',
-                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
-                }, {
-                    name: 'HiHat open',
-                    sampleUrl: '12-TR-909/909 HHOP.wav'
-                },
-            ]
-        }, {
-            type: 'samples',
             color: '#deadf0',
             name: 'Percussion',
             tracks: [
@@ -239,7 +240,8 @@
     var _highpassFilter = null;
 
     var _highpassFilterFreq = 0;
-    var _filterFreq = 22000;
+    this._filterFreq = 500;
+    var _filterCutoff = 500;
 
     var _delayAmount = 0.125;
     var _delayTime = 0;
@@ -264,12 +266,14 @@
             id: 1,
             name: 'Filter',
             y: {
-                name: 'filterCutoff',
+                name: 'Cut off',
+                param: '_filterCutoff',
                 min: 0,
                 max: 1
             },
             x: {
-                name: '_filterFreq',
+                name: 'Filter freq',
+                param: '_filterFreq',
                 min: 200,
                 max: 22000
             }
@@ -315,56 +319,59 @@
         
         //create lowpass filter
         _lowpassFilter = _context.createBiquadFilter();
-        _lowpassFilter.frequency.value = _filterFreq;
+        _lowpassFilter.frequency.value = 300;
+        
+        // Create master gain control.
+        _lowpassFilter.connect(_context.destination);
+
+        _masterGainNode.connect(_lowpassFilter);
+        // _masterGainNode.connect(_lowpassFilter);
         
         //create lowpass filter
-        _highpassFilter = _context.createBiquadFilter();
-        _highpassFilter.type = 1;
-        _highpassFilter.frequency.value = _highpassFilterFreq;
+        // _highpassFilter = _context.createBiquadFilter();
+        // _highpassFilter.type = 1;
+        // _highpassFilter.frequency.value = _highpassFilterFreq;
         
         //create compressor
-        _compressor = _context.createDynamicsCompressor();
-        _compressor.treshold = -20;
-        _compressor.attack = 1;
-        _compressor.release = 250;
-        _compressor.ratio = 4;
-        _compressor.knee = 5;
+        // _compressor = _context.createDynamicsCompressor();
+        // _compressor.treshold = -20;
+        // _compressor.attack = 1;
+        // _compressor.release = 250;
+        // _compressor.ratio = 4;
+        // _compressor.knee = 5;
 
         // Create master wet and dry.
-        _masterDry = _context.createGainNode();
-        _masterWet = _context.createGainNode();
-        _masterDelaySend = _context.createGainNode();
-        _masterDry.gain.value = 1;
-        _masterWet.gain.value = 0;
+        // _masterDry = _context.createGainNode();
+        // _masterWet = _context.createGainNode();
+        // _masterDelaySend = _context.createGainNode();
+        // _masterDry.gain.value = 1;
+        // _masterWet.gain.value = 0;
         
         // Create delay
-        _delay = _context.createDelay();
+        // _delay = _context.createDelay();
 
         // Create reverb
-        _reverb = _context.createConvolver();
+        // _reverb = _context.createConvolver();
         
-        _compressor.connect(_context.destination);
+        // _compressor.connect(_context.destination);
         // Connect master dry and wet to compressor.
-        _masterDry.connect(_compressor);
-        _masterWet.connect(_compressor);
-        _masterDelaySend.connect(_compressor);
+        // _masterDry.connect(_compressor);
+        // _masterWet.connect(_compressor);
+        // _masterDelaySend.connect(_compressor);
         
         // Connect delay to master wet.
-        _delay.connect(_masterDelaySend);
+        // _delay.connect(_masterDelaySend);
         // _reverb.connect(_masterWet);
         
         //connect lowpass filter
-        _lowpassFilter.connect(_masterDry);
-        _lowpassFilter.connect(_masterWet);
-        _lowpassFilter.connect(_masterDelaySend);
+        // _lowpassFilter.connect(_masterDry);
+        // _lowpassFilter.connect(_masterWet);
+        // _lowpassFilter.connect(_masterDelaySend);
         
-        _highpassFilter.connect(_lowpassFilter);
-        _masterGainNode.connect(_highpassFilter);
+        // _highpassFilter.connect(_lowpassFilter);
+        // _masterGainNode.connect(_highpassFilter);
 
-        // Create master gain control.
-        _masterGainNode = _context.createGainNode();
-        _masterGainNode.gain.value = 0.7;
-        _masterGainNode.connect(_context.destination);
+
 
         this.setFxValues();
 
@@ -373,8 +380,10 @@
 
     this.setFxValues = function() {
 
-        _delay.delayTime.value = _delayTime;
-        _masterDelaySend.gain.value = _delayAmount;
+        // _delay.delayTime.value = _delayTime;
+        // _masterDelaySend.gain.value = _delayAmount;
+        _lowpassFilter.frequency.value = this._filterFreq;
+        console.log('_filterFreq', this._filterFreq, _lowpassFilter.frequency.value);
     }
 
     this.createInstruments = function() {
