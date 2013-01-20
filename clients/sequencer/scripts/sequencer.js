@@ -240,7 +240,7 @@
     var _highpassFilter = null;
 
     var _highpassFilterFreq = 0;
-    this._filterFreq = 500;
+    this._filterFreq = 22000;
     this._playbackRate = 1;
     this._empty = null;
     var _filterCutoff = 22000;
