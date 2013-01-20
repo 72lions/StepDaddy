@@ -241,67 +241,43 @@
 
     var _highpassFilterFreq = 0;
     this._filterFreq = 500;
-    var _filterCutoff = 500;
+    this._playbackRate = 1;
+    this._empty = null;
+    var _filterCutoff = 22000;
 
     var _delayAmount = 0.125;
-    var _delayTime = 0;
+    this._delayTime = 0;
 
     var effectsConfig = [
         {
             id: 0,
-            name: 'Delay',
-            y: {
-                name: 'Amount',
-                param: '_delayAmount',
-                min: 0,
-                max: 1
-            },
+            name: 'Playback',
             x: {
-                name: 'Time',
-                param: '_delayTime',
+                name: 'Freq',
+                param: '_filterFreq',
+                min: 200,
+                max: 22000
+            },
+            y: {
+                name: '',
+                param: '_empty',
                 min: 0,
                 max: 1
             }
         }, {
             id: 1,
-            name: 'Filter',
+            name: 'Playback',
+            x: {
+                name: 'Freq',
+                param: '_playbackRate',
+                min: 0.5,
+                max: 4
+            },
             y: {
-                name: 'Cut off',
-                param: '_filterCutoff',
+                name: '',
+                param: '_empty',
                 min: 0,
                 max: 1
-            },
-            x: {
-                name: 'Filter freq',
-                param: '_filterFreq',
-                min: 200,
-                max: 22000
-            }
-        }, {
-            id: 2,
-            name: 'Reverb',
-            y: {
-                name: 'reverbAmount',
-                min: 0,
-                max: 0
-            },
-            x: {
-                name: '',
-                min: 0,
-                max: 0
-            }
-        }, {
-            id: 3,
-            name: 'Filter Hi',
-            y: {
-                name: '_highpassFilterFreq',
-                min: 0,
-                max: 5000
-            },
-            x: {
-                name: '',
-                min: 0,
-                max: 0
             }
         }
     ];
@@ -321,25 +297,28 @@
         _lowpassFilter = _context.createBiquadFilter();
         _lowpassFilter.frequency.value = 300;
         
-        // Create master gain control.
-        _lowpassFilter.connect(_context.destination);
-
-        _masterGainNode.connect(_lowpassFilter);
-        // _masterGainNode.connect(_lowpassFilter);
         
+        // _masterGainNode.connect(_lowpassFilter);
+
         //create lowpass filter
         // _highpassFilter = _context.createBiquadFilter();
         // _highpassFilter.type = 1;
         // _highpassFilter.frequency.value = _highpassFilterFreq;
         
         //create compressor
-        // _compressor = _context.createDynamicsCompressor();
-        // _compressor.treshold = -20;
-        // _compressor.attack = 1;
-        // _compressor.release = 250;
-        // _compressor.ratio = 4;
-        // _compressor.knee = 5;
+         _compressor = _context.createDynamicsCompressor();
+         _compressor.treshold = -20;
+         _compressor.attack = 1;
+         _compressor.release = 250;
+         _compressor.ratio = 4;
+         _compressor.knee = 5;
 
+
+        // Create master gain control.
+        _compressor.connect(_context.destination);
+        _lowpassFilter.connect(_compressor);
+
+        _masterGainNode.connect(_lowpassFilter);
         // Create master wet and dry.
         // _masterDry = _context.createGainNode();
         // _masterWet = _context.createGainNode();
@@ -383,7 +362,7 @@
         // _delay.delayTime.value = _delayTime;
         // _masterDelaySend.gain.value = _delayAmount;
         _lowpassFilter.frequency.value = this._filterFreq;
-        console.log('_filterFreq', this._filterFreq, _lowpassFilter.frequency.value);
+        // console.log('_filterFreq', this._filterFreq, _lowpassFilter.frequency.value);
     }
 
     this.createInstruments = function() {
@@ -537,6 +516,10 @@
         var gainNode = _context.createGainNode();
         // Connect the source to the gain node.
         voice.connect(gainNode);
+
+
+        voice.playbackRate.value = this._playbackRate;
+
         // Connect the gain node to the destination.
         gainNode.connect(_masterGainNode);
 
