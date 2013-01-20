@@ -93,7 +93,7 @@
 
       _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function(beat) {
         _sequencerView.drawPlayhead(beat);
-        _conn.send(mixr.enums.Events.SEQUENCER_BEAT, {beat: beat});
+        _conn.execute(mixr.enums.Events.SEQUENCER_BEAT, {beat: beat});
       });
     };
 

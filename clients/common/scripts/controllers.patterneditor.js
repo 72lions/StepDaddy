@@ -63,7 +63,11 @@
         }
       });
 
-     
+      _model.on(mixr.enums.Events.SEQUENCER_BEAT, function(beat) {
+        view.drawPlayhead(beat);
+      });
+
+
 
       // listen for note change event
       _model.getInstrument();

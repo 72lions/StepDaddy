@@ -32,8 +32,13 @@
       _self.emit(mixr.enums.Events.INSTRUMENT, _self.instrument);
     };
 
+    var _onSequenceBeat = function(data) {
+      _self.emit(mixr.enums.Events.SEQUENCER_BEAT, data);
+    };
+
     var _addEventListeners = function() {
       _connection.on(mixr.enums.Events.INSTRUMENT, _onInstrument);
+      _connection.on(mixr.enums.Events.SEQUENCER_BEAT, _onSequenceBeat);
     };
 
     this.getInstrument = function() {
