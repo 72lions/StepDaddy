@@ -26,6 +26,7 @@
     var _self = this;
     var _readyCallback = null;
     var _isLoaded = false;
+    var _synth = null; 
 
     /**
      * Initializes the model
@@ -39,10 +40,21 @@
       return this;
     };
 
-    this.loadTracks = function(context) {
-      for (var i = 0; i < tracks.length; i++) {
-        tracks[i].loadSample(this.trackLoaded, context);
-      };
+    this.setup = function(context) {
+      if (this.type === 'samples') {
+        for (var i = 0; i < tracks.length; i++) {
+          tracks[i].loadSample(this.trackLoaded, context);
+        };
+      } else if (this.type === 'synth') {
+          console.log('>>> Create synth');
+          _synth = new WebSynth(context);
+          _synth.filter.set_freq(32); 
+          _synth.filter.set_q(4);
+          _synth.vco2.set_fine(53.2); 
+          _synth.vco2.set_fine(48); 
+          _synth.filter.set_amount(30); 
+          _synth.eg.set_d(12); 
+      }
     };
 
     this.trackLoaded = function(track) {
@@ -51,6 +63,18 @@
         console.log('All samples loaded.');
         _readyCallback();
         _isLoaded = true;
+      }
+    };
+
+    this.play = function(note) {
+      if (this.type === 'synth' && _synth) {
+       _synth.play(note);
+      }
+    };
+
+    this.stop = function() {
+      if (this.type === 'synth' && _synth) {
+       _synth.stop();
       }
     };
 

@@ -21,7 +21,9 @@
     this.notes = notes || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.sampleUrl = sampleUrl || '';
     this.volume = volume || 1;
-    
+
+    this.note = null;
+
     /**
      * Initializes the model
      *

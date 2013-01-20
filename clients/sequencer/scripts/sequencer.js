@@ -29,71 +29,71 @@
     var samplesPath = '../common/resources/12-TR-909/'; 
 
     var instrumentsConfig = [
-        {
-            type: 'samples',
-            color: 'hotpink',
-            name: 'Drums',
-            tracks: [
-                {
-                    name: 'HiHat',
-                    sampleUrl: '909 HHCL 1.wav'
-                }, {
-                    name: 'Kick',
-                    sampleUrl: '909 KIK1.wav'
-                }, {
-                    name: 'Tom HI',
-                    sampleUrl: '909 HI.TOM1.wav'
-                }, {
-                    name: 'Snare',
-                    sampleUrl: '909 SD1.wav'
-                }, {
-                    name: 'Tom Low',
-                    sampleUrl: '909 LOWTOM1.wav'
-                }    
-            ]     
-        }, {
-            type: 'samples',
-            color: '#deadf0',
-            name: 'Toms',
-            tracks: [
-                {
-                    name: 'Tom 1',
-                    sampleUrl: '909 HI.TOM1.wav'
-                }, {
-                    name: 'Tom 2',
-                    sampleUrl: '909 HI.TOM2.wav'
-                }, {
-                    name: 'Tom 3',
-                    sampleUrl: '909 HI.TOM3.wav'
-                }, {
-                    name: 'Tom 4',
-                    sampleUrl: '909 HI.TOM4.wav'
-                }
-            ]     
-        }
-        // , {
-        //     type: 'synth',
-        //     color: '@c0ffee',
-        //     name: 'Nordic Lead',
+        // {
+        //     type: 'samples',
+        //     color: 'hotpink',
+        //     name: 'Drums',
         //     tracks: [
         //         {
-        //             name: 'C',
-        //             note: 'C-4'
+        //             name: 'HiHat',
+        //             sampleUrl: '909 HHCL 1.wav'
         //         }, {
-        //             name: 'D',
-        //             note: 'D-4'
+        //             name: 'Kick',
+        //             sampleUrl: '909 KIK1.wav'
         //         }, {
-        //             name: 'E',
-        //             note: 'E-4'
+        //             name: 'Tom HI',
+        //             sampleUrl: '909 HI.TOM1.wav'
         //         }, {
-        //             name: 'F',
-        //             note: 'F-4'
+        //             name: 'Snare',
+        //             sampleUrl: '909 SD1.wav'
         //         }, {
-        //             name: 'G',
-        //             note: 'G-4'
+        //             name: 'Tom Low',
+        //             sampleUrl: '909 LOWTOM1.wav'
+        //         }    
+        //     ]     
+        // }, {
+        //     type: 'samples',
+        //     color: '#deadf0',
+        //     name: 'Toms',
+        //     tracks: [
+        //         {
+        //             name: 'Tom 1',
+        //             sampleUrl: '909 HI.TOM1.wav'
+        //         }, {
+        //             name: 'Tom 2',
+        //             sampleUrl: '909 HI.TOM2.wav'
+        //         }, {
+        //             name: 'Tom 3',
+        //             sampleUrl: '909 HI.TOM3.wav'
+        //         }, {
+        //             name: 'Tom 4',
+        //             sampleUrl: '909 HI.TOM4.wav'
         //         }
-        //     ]
-        // }
+        //     ]     
+        // },
+        {
+            type: 'synth',
+            color: '@c0ffee',
+            name: 'Nordic Lead',
+            tracks: [
+                {
+                 name: 'A',
+                 note: '0'
+                }, {
+                 name: 'C',
+                 note: '3'
+                }, {
+                 name: 'D',
+                 note: '5'
+                }, {
+                 name: 'E',
+                 note: '7'
+                }, {
+                 name: 'G',
+                 note: '10'
+                }
+            ]
+        }
     ];
     
     this.initialize = function() {
@@ -112,7 +112,7 @@
     this.createInstruments = function() {
         _instruments = [];
         for (var i = 0; i < instrumentsConfig.length; i++) {
-            var tracks = this.createTracks(i, instrumentsConfig[i].tracks);
+            var tracks = this.createTracks(i, instrumentsConfig[i].tracks, instrumentsConfig[i].type);
             var instrument = new mixr.models.Instrument(i, instrumentsConfig[i].name, tracks, 1.0, instrumentsConfig[i].type, instrumentsConfig[i].color);
             _instruments.push(instrument);
         };
@@ -120,21 +120,26 @@
         _availableInstruments = _instruments.concat();
     };
 
-    this.createTracks = function(instrumentId, tracksConfig) {
+    this.createTracks = function(instrumentId, tracksConfig, type) {
+        console.log('createTracks');
         var tracks = [];
         for (var i = 0; i < tracksConfig.length; i++) {
             var config = tracksConfig[i];
-            var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, samplesPath + config.sampleUrl, 1.0);
+
+            if (type === 'samples') {
+                var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, samplesPath + config.sampleUrl, 1.0);
+            } else {
+                var track = new mixr.models.Track(instrumentId + '-' + i, config.name, null, null, 1.0);
+                track.note = config.note;
+                console.log('track', track);
+            };
             tracks.push(track);
-        };
+        }
 
         return tracks;
     };
 
     this.getRandomInstrument = function(clientId) {
-
-        console.log('>>> clientId')
-
         if (typeof _clients[clientId] !== 'undefined') {
             return _clients[clientId];
         }
@@ -148,8 +153,10 @@
         var randomIndex = Math.floor(Math.random() * numAvailableInstruments);
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
+
         randomInstrument.initialize(this.start);
-        randomInstrument.loadTracks(_context);
+
+        randomInstrument.setup(_context);
 
         console.log("Released random instrument", randomInstrument);
 
@@ -182,8 +189,15 @@
                 for (var j = 0; j < _instruments[i].tracks.length; j++) {
                     var track = _instruments[i].tracks[j];
                     var volume = track.notes[_noteIndex];
-                    if (volume > 0 && _instruments[i].isLoaded()) {
-                        _self.playNote(track, contextPlayTime, volume);
+                    if (_instruments[i].type === 'samples' && _instruments[i].isLoaded()) {
+                        if (volume > 0) {
+                            _self.playNote(track, contextPlayTime, volume);
+                        }
+                    } else if (_instruments[i].type === 'synth') {
+                        _instruments[i].stop();
+                        if (volume > 0) {
+                            _instruments[i].play(track.note);
+                        }
                     }
                 }
             }
