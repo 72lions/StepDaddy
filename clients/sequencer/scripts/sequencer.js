@@ -31,6 +31,43 @@
     var instrumentsConfig = [
         {
             type: 'samples',
+            color: '#517CBD',
+            name: 'Bass synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_1.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bass/Bass1_2.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bass/Bass1_3.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bass/Bass1_4.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bass/Bass1_5.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_6.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'bass/Bass1_7.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bass/Bass1_8.mp3'
+                }
+            ]
+        }, {
+            type: 'samples',
             color: 'hotpink',
             name: 'Drums',
             tracks: [
@@ -49,43 +86,6 @@
                 }, {
                     name: 'Tom Low',
                     sampleUrl: '12-TR-909/909 LOWTOM1.wav'
-                }
-            ]
-        }, {
-            type: 'samples',
-            color: 'navyblue',
-            name: 'Bass synth',
-            tracks: [
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_1.mp3'
-                }, {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_2.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_3.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_4.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_5.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_6.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_7.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_8.mp3'
                 }
             ]
         }, {
