@@ -31,76 +31,119 @@
     var instrumentsConfig = [
         {
             type: 'samples',
+            color: '#AADB53',
+            name: 'Lead synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'lead3/Synth3_8.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'lead3/Synth3_7.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'lead3/Synth3_6.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'lead3/Synth3_5.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'lead3/Synth3_4.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'lead3/Synth3_3.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'lead3/Synth3_2.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'lead3/Synth3_1.mp3'
+                }
+            ]
+        }, 
+        /*
+        {
+            type: 'samples',
             color: '#517CBD',
             name: 'Bass synth',
             tracks: [
                 {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_1.mp3'
-                }, {
-                    name: 'H',
-                    sampleUrl: 'bass/Bass1_2.mp3'
-                },
-                {
                     name: 'C#',
-                    sampleUrl: 'bass/Bass1_3.mp3'
-                },
-                {
-                    name: 'E',
-                    sampleUrl: 'bass/Bass1_4.mp3'
-                },
-                {
-                    name: 'F#',
-                    sampleUrl: 'bass/Bass1_5.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bass/Bass1_6.mp3'
+                    sampleUrl: 'bass/Bass1_8.mp3'
                 },
                 {
                     name: 'H',
                     sampleUrl: 'bass/Bass1_7.mp3'
                 },
                 {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_6.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bass/Bass1_5.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bass/Bass1_4.mp3'
+                },
+                {
                     name: 'C#',
-                    sampleUrl: 'bass/Bass1_8.mp3'
+                    sampleUrl: 'bass/Bass1_3.mp3'
+                }, 
+                {
+                    name: 'H',
+                    sampleUrl: 'bass/Bass1_2.mp3'
+                }, 
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_1.mp3'
                 }
+                
             ]
-        }, {
+        },
+        */ 
+        {
             type: 'samples',
             color: '#51ACBD',
             name: 'Bass DRY synth',
             tracks: [
                 {
-                    name: 'A',
-                    sampleUrl: 'bassdry/Bass3_1.mp3'
-                }, {
-                    name: 'H',
-                    sampleUrl: 'bassdry/Bass3_2.mp3'
-                },
-                {
                     name: 'C#',
-                    sampleUrl: 'bassdry/Bass3_3.mp3'
-                },
-                {
-                    name: 'E',
-                    sampleUrl: 'bassdry/Bass3_4.mp3'
-                },
-                {
-                    name: 'F#',
-                    sampleUrl: 'bassdry/Bass3_5.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bassdry/Bass3_6.mp3'
+                    sampleUrl: 'bassdry/Bass3_8.mp3'
                 },
                 {
                     name: 'H',
                     sampleUrl: 'bassdry/Bass3_7.mp3'
                 },
                 {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_6.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bassdry/Bass3_5.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bassdry/Bass3_4.mp3'
+                },
+                {
                     name: 'C#',
-                    sampleUrl: 'bassdry/Bass3_8.mp3'
+                    sampleUrl: 'bassdry/Bass3_3.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_2.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_1.mp3'
                 }
             ]   
         }, {
