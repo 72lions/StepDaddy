@@ -9,7 +9,6 @@
     var modifiers = ['Test 1', 'Test 2', 'Test 3', 'Test 4'];
 
     var _onModifierChange = function(data) {
-      console.log('Modifier change', data);
       _conn.execute(mixr.enums.Events.MODIFIER_CHANGE, data);
     };
 

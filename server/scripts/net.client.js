@@ -50,7 +50,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
      */
     var _onExecute = function(data) {
 
-      console.log('Client wants me to execute', data.call, 'with these arguments', data.args);
+      //console.log('Client wants me to execute', data.call, 'with these arguments', data.args);
 
       _self.emit(data.call, data);
 
@@ -113,7 +113,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       if (typeof message === 'undefined') {
         message = {};
       }
-      console.log('[Talking to the client] -> ', messageType, '| Data:', message);
+      //console.log('[Talking to the client] -> ', messageType, '| Data:', message);
       _socket.emit(messageType, message);
 
       return this;
