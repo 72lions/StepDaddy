@@ -106,42 +106,42 @@
         }, {
             type: 'samples',
             color: 'hotpink',
-            name: 'Drums',
+            name: 'Drum kit',
             tracks: [
                 {
-                    name: 'HiHat',
-                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
-                }, {
                     name: 'Kick',
-                    sampleUrl: '12-TR-909/909 KIK1.wav'
-                }, {
-                    name: 'Tom HI',
-                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
+                    sampleUrl: '12-TR-909/909 KIK2.wav'
                 }, {
                     name: 'Snare',
                     sampleUrl: '12-TR-909/909 SD1.wav'
+                },  {
+                    name: 'Snare long',
+                    sampleUrl: '12-TR-909/909 SD3.wav'
                 }, {
-                    name: 'Tom Low',
-                    sampleUrl: '12-TR-909/909 LOWTOM1.wav'
-                }
+                    name: 'HiHat',
+                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
+                }, {
+                    name: 'HiHat open',
+                    sampleUrl: '12-TR-909/909 HHOP.wav'
+                },
             ]
         }, {
             type: 'samples',
             color: '#deadf0',
-            name: 'Toms',
+            name: 'Percussion',
             tracks: [
                 {
+                    name: 'Clap',
+                    sampleUrl: '12-TR-909/909 CLAP.wav'
+                }, {
+                    name: 'Rim',
+                    sampleUrl: '12-TR-909/909 RIM.wav'
+                }, {
                     name: 'Tom 1',
                     sampleUrl: '12-TR-909/909 HI.TOM1.wav'
                 }, {
                     name: 'Tom 2',
                     sampleUrl: '12-TR-909/909 HI.TOM2.wav'
-                }, {
-                    name: 'Tom 3',
-                    sampleUrl: '12-TR-909/909 HI.TOM3.wav'
-                }, {
-                    name: 'Tom 4',
-                    sampleUrl: '12-TR-909/909 HI.TOM4.wav'
                 }
             ]
         }
