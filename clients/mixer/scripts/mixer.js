@@ -14,7 +14,7 @@
 
     var _onRoomCreated = function(data) {
       console.log('The room was created:', data.room);
-      document.getElementById('room_title').innerText = data.room;
+      //document.getElementById('room_title').innerText = data.room;
     };
 
     var _onRoomClosed = function(data) {
@@ -86,9 +86,7 @@
 
     this.initialize = function() {
 
-      document.getElementById('disconnect').addEventListener('click', _onDisconnect);
-
-      _conn = new mixr.net.Connection(_client_id);
+      _conn = new mixr.net.Connection();
       _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
