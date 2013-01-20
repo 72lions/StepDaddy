@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
-  overflow-x: hidden;
+  font-family: helvetica neue, helvetica;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -81,14 +81,23 @@ html, body {
       }*/ }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
-      width: 100px; }
+      width: 60px; }
       #pattern-editor td:nth-child(1) h1,
       #sequencer-view td:nth-child(1) h1 {
+        font-size: 10px;
         font-weight: bold;
         text-transform: uppercase;
         text-overflow: ellipsis;
         overflow: hidden;
-        width: 100px;
+        width: 60px;
         padding: 10px;
         box-sizing: border-box;
         text-shadow: 0 1px #aaaaaa; }
+      @media (min-width: 580px) {
+        #pattern-editor td:nth-child(1),
+        #sequencer-view td:nth-child(1) {
+          width: 100px; }
+          #pattern-editor td:nth-child(1) h1,
+          #sequencer-view td:nth-child(1) h1 {
+            font-size: 16px;
+            width: 100px; } }
