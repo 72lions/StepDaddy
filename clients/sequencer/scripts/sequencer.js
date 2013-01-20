@@ -111,19 +111,35 @@
         // }
     ];
 
+
+    var _lowpassFilter = null;
+    var _compressor = null;
+    var _masterDry = null;
+    var _masterWet = null;
+    var _masterDelaySend = null;
+    var _delay = null;
+    var _reverb = null;
+    var _highpassFilter = null;
+
+    var _highpassFilterFreq = 0;
+    var _filterFreq = 22000;
+
+    var _delayAmount = 0.125;
+    var _delayTime = 0;
+
     var effectsConfig = [
         {
             id: 0,
             name: 'Delay',
             y: {
                 name: 'Amount',
-                param: 'delayAmount',
+                param: '_delayAmount',
                 min: 0,
                 max: 1
             },
             x: {
                 name: 'Time',
-                param: 'delayTime',
+                param: '_delayTime',
                 min: 0,
                 max: 1000
             }
@@ -136,9 +152,9 @@
                 max: 1
             },
             x: {
-                name: 'filterFreq',
-                min: 0,
-                max: 2000
+                name: '_filterFreq',
+                min: 200,
+                max: 22000
             }
         }, {
             id: 2,
@@ -155,11 +171,11 @@
             }
         }, {
             id: 3,
-            name: '',
+            name: 'Filter Hi',
             y: {
-                name: '',
+                name: '_highpassFilterFreq',
                 min: 0,
-                max: 0
+                max: 5000
             },
             x: {
                 name: '',
@@ -171,15 +187,6 @@
 
     // FX
 
-    var delayAmount = 0;
-    var delayTime = 0;
-
-    var filterCutoff = 0;
-    var filterFreq = 0;
-
-    var reverbAmount = 0;
-
-
     this.initialize = function() {
 
         // Create context.
@@ -188,10 +195,69 @@
         // Create master gain control.
         _masterGainNode = _context.createGainNode();
         _masterGainNode.gain.value = 0.7;
+        
+        //create lowpass filter
+        _lowpassFilter = _context.createBiquadFilter();
+        _lowpassFilter.frequency.value = _filterFreq;
+        
+        //create lowpass filter
+        _highpassFilter = _context.createBiquadFilter();
+        _highpassFilter.type = 1;
+        _highpassFilter.frequency.value = _highpassFilterFreq;
+        
+        //create compressor
+        _compressor = _context.createDynamicsCompressor();
+        _compressor.treshold = -20;
+        _compressor.attack = 1;
+        _compressor.release = 250;
+        _compressor.ratio = 4;
+        _compressor.knee = 5;
+
+        // Create master wet and dry.
+        _masterDry = _context.createGainNode();
+        _masterWet = _context.createGainNode();
+        _masterDelaySend = _context.createGainNode();
+        _masterDry.gain.value = 1;
+        _masterWet.gain.value = 0;
+        
+        // Create delay
+        _delay = _context.createDelay();
+
+        // Create reverb
+        _reverb = _context.createConvolver();
+        
+        _compressor.connect(_context.destination);
+        // Connect master dry and wet to compressor.
+        _masterDry.connect(_compressor);
+        _masterWet.connect(_compressor);
+        _masterDelaySend.connect(_compressor);
+        
+        // Connect delay to master wet.
+        _delay.connect(_masterDelaySend);
+        // _reverb.connect(_masterWet);
+        
+        //connect lowpass filter
+        _lowpassFilter.connect(_masterDry);
+        _lowpassFilter.connect(_masterWet);
+        _lowpassFilter.connect(_masterDelaySend);
+        
+        _highpassFilter.connect(_lowpassFilter);
+        _masterGainNode.connect(_highpassFilter);
+
+        // Create master gain control.
+        _masterGainNode = _context.createGainNode();
+        _masterGainNode.gain.value = 0.7;
         _masterGainNode.connect(_context.destination);
+
+        this.setFxValues();
 
         this.createInstruments();
     };
+
+    this.setFxValues = function() {
+        _delay.delayTime.value = _delayTime;
+        _masterDelaySend.gain.value = _delayAmount;
+    }
 
     this.createInstruments = function() {
         _instruments = [];
@@ -389,6 +455,8 @@
 
         console.log('update', paramX, ':', valueX);
         console.log('update', paramY, ':', valueY);
+
+        this.setFxValues();
     };
         
     this.interpolate = function(value, minimum, maximum) {
