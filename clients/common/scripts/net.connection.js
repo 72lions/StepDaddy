@@ -165,6 +165,11 @@
       console.log('Mixer got a note', data);
       _self.emit(mixr.enums.Events.NOTE, data);
     };
+
+    var _onSequencerBeat = function(data) {
+      _self.emit(mixr.enums.Events.SEQUENCER_BEAT, data.args.beat);
+    };
+
     /**
      * Is triggered when a command is executed and the results
      * are being send from the server.
@@ -214,7 +219,8 @@
       .on(mixr.enums.Events.CLIENT_LEFT, _onClientLeft)
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
       .on(mixr.enums.Events.INSTRUMENT, _onInstrument)
-      .on(mixr.enums.Events.NOTE, _onNote);
+      .on(mixr.enums.Events.NOTE, _onNote)
+      .on(mixr.enums.Events.SEQUENCER_BEAT, _onSequencerBeat);
 
       return this;
     };
@@ -248,7 +254,7 @@
         message = {};
       }
 
-      console.log('Sending message of type', messageType, 'with data', message);
+      //console.log('Sending message of type', messageType, 'with data', message);
       _socket.emit(messageType, message);
 
       return this;

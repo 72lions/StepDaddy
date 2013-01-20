@@ -99,6 +99,10 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
 
     };
 
+    var _onSeqencerBeat = function(data) {
+      _self.broadcast('seq_beat', data);
+    };
+
     /**
      * Registers all the event listeners for a client
      *
@@ -112,7 +116,8 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       .on('instrument', _onInstrument)
       .on('note', _onNote)
       .on('disconnect', _onClientBye)
-      .on('byebye', _onClientBye);
+      .on('byebye', _onClientBye)
+      .on('seq_beat', _onSeqencerBeat);
     };
 
     /**
@@ -138,6 +143,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       _roomOwners[client.id] = client;
 
       if (!alreadyExists) {
+        console.log('Adding event listeners for', client.id);
         _addEventListeners(client);
       }
 

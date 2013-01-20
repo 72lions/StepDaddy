@@ -55,8 +55,7 @@
     var _onGetInstrument = function(data) {
       console.log('Got a request for an instrument', data);
 
-      // var instrument = _sequencer.getRandomInstrument(data.client);
-      var instrument = _sequencer.getNextInstrument(data.client);
+      var instrument = _sequencer.getRandomInstrument(data.client);
 
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
@@ -78,8 +77,7 @@
     this.initialize = function() {
 
       _conn = new mixr.net.Connection();
-      _conn.connect('http://10.48.19.160:8181')
-      // _conn.connect('http://10.48.19.84:8181')
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })
@@ -95,7 +93,7 @@
 
       _sequencer.on(mixr.enums.Events.SEQUENCER_BEAT, function(beat) {
         _sequencerView.drawPlayhead(beat);
-        _conn.send(mixr.enums.Events.SEQUENCER_BEAT, {beat: beat});
+        _conn.execute(mixr.enums.Events.SEQUENCER_BEAT, {beat: beat});
       });
     };
 
