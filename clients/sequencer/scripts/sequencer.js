@@ -88,8 +88,8 @@
                     name: 'A',
                     sampleUrl: 'bassdry/Bass3_1.mp3'
                 }
-            ]   
-        }, 
+            ]
+        },
         {
             type: 'samples',
             color: '#AADB53',
@@ -127,7 +127,7 @@
                     sampleUrl: 'lead3/Synth3_1.mp3'
                 }
             ]
-        }, 
+        },
         /*
         {
             type: 'samples',
@@ -157,19 +157,19 @@
                 {
                     name: 'C#',
                     sampleUrl: 'bass/Bass1_3.mp3'
-                }, 
+                },
                 {
                     name: 'H',
                     sampleUrl: 'bass/Bass1_2.mp3'
-                }, 
+                },
                 {
                     name: 'A',
                     sampleUrl: 'bass/Bass1_1.mp3'
                 }
-                
+
             ]
         },
-        */ 
+        */
         /*
         {
             type: 'samples',
@@ -297,7 +297,7 @@
                 name: 'Freq',
                 param: '_playbackRate',
                 min: 0.5,
-                max: 4
+                max: 2
             },
             y: {
                 name: '',
@@ -318,19 +318,19 @@
         // Create master gain control.
         _masterGainNode = _context.createGainNode();
         _masterGainNode.gain.value = 0.7;
-        
+
         //create lowpass filter
         _lowpassFilter = _context.createBiquadFilter();
         _lowpassFilter.frequency.value = 300;
-        
-        
+
+
         // _masterGainNode.connect(_lowpassFilter);
 
         //create lowpass filter
         // _highpassFilter = _context.createBiquadFilter();
         // _highpassFilter.type = 1;
         // _highpassFilter.frequency.value = _highpassFilterFreq;
-        
+
         //create compressor
          _compressor = _context.createDynamicsCompressor();
          _compressor.treshold = -20;
@@ -351,28 +351,28 @@
         // _masterDelaySend = _context.createGainNode();
         // _masterDry.gain.value = 1;
         // _masterWet.gain.value = 0;
-        
+
         // Create delay
         // _delay = _context.createDelay();
 
         // Create reverb
         // _reverb = _context.createConvolver();
-        
+
         // _compressor.connect(_context.destination);
         // Connect master dry and wet to compressor.
         // _masterDry.connect(_compressor);
         // _masterWet.connect(_compressor);
         // _masterDelaySend.connect(_compressor);
-        
+
         // Connect delay to master wet.
         // _delay.connect(_masterDelaySend);
         // _reverb.connect(_masterWet);
-        
+
         //connect lowpass filter
         // _lowpassFilter.connect(_masterDry);
         // _lowpassFilter.connect(_masterWet);
         // _lowpassFilter.connect(_masterDelaySend);
-        
+
         // _highpassFilter.connect(_lowpassFilter);
         // _masterGainNode.connect(_highpassFilter);
 
@@ -594,11 +594,11 @@
 
         this.setFxValues();
     };
-        
+
     this.interpolate = function(value, minimum, maximum) {
         return minimum + (maximum - minimum) * value;
     }
-        
+
     this.initialize();
   };
 
