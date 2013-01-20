@@ -86,8 +86,6 @@
 
     this.initialize = function() {
 
-      document.getElementById('disconnect').addEventListener('click', _onDisconnect);
-
       _conn = new mixr.net.Connection(_client_id);
       _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {

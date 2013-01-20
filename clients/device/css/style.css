@@ -11,6 +11,18 @@ html, body {
   -ms-user-select: none;
   user-select: none; }
 
+input,
+button {
+  -webkit-appearance: none;
+  height: 60px;
+  min-width: 100px;
+  background: white;
+  border-radius: 4px;
+  border: none;
+  color: #555;
+  font-weight: bold;
+  padding: 0 15px; }
+
 @-webkit-keyframes stepping {
   from {
     left: 0%; }
@@ -125,7 +137,3 @@ old dodo stuff
   */
 #login {
   padding: 50px; }
-  #login button {
-    height: 46px;
-    min-width: 100px;
-    background: red; }

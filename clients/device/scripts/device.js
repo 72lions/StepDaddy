@@ -58,8 +58,6 @@
 
     this.initialize = function() {
 
-      document.getElementById('emitter').addEventListener('click', _onEmit);
-      document.getElementById('disconnect').addEventListener('click', _onDisconnect);
       document.getElementById('join_room').addEventListener('click', _onJoinRoom);
 
       _conn = new mixr.net.Connection();
