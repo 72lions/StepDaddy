@@ -75,7 +75,7 @@
     };
 
     var _onModifierChange = function(data) {
-      console.log('on modifier change', data);
+      _sequencer.updateFxParam(data.args);
     };
 
     this.initialize = function() {

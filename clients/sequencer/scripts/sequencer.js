@@ -26,29 +26,103 @@
     var _self = this;
     var _clients = {};
 
-    var samplesPath = '../common/resources/12-TR-909/';
+    var samplesPath = '../common/resources/';
 
     var instrumentsConfig = [
         {
+            type: 'samples',
+            color: '#517CBD',
+            name: 'Bass synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_1.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bass/Bass1_2.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bass/Bass1_3.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bass/Bass1_4.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bass/Bass1_5.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bass/Bass1_6.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'bass/Bass1_7.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bass/Bass1_8.mp3'
+                }
+            ]
+        }, {
+            type: 'samples',
+            color: '#51ACBD',
+            name: 'Bass DRY synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_1.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_2.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_3.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bassdry/Bass3_4.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bassdry/Bass3_5.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_6.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_7.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_8.mp3'
+                }
+            ]   
+        }, {
             type: 'samples',
             color: 'hotpink',
             name: 'Drums',
             tracks: [
                 {
                     name: 'HiHat',
-                    sampleUrl: '909 HHCL 1.wav'
+                    sampleUrl: '12-TR-909/909 HHCL 1.wav'
                 }, {
                     name: 'Kick',
-                    sampleUrl: '909 KIK1.wav'
+                    sampleUrl: '12-TR-909/909 KIK1.wav'
                 }, {
                     name: 'Tom HI',
-                    sampleUrl: '909 HI.TOM1.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
                 }, {
                     name: 'Snare',
-                    sampleUrl: '909 SD1.wav'
+                    sampleUrl: '12-TR-909/909 SD1.wav'
                 }, {
                     name: 'Tom Low',
-                    sampleUrl: '909 LOWTOM1.wav'
+                    sampleUrl: '12-TR-909/909 LOWTOM1.wav'
                 }
             ]
         }, {
@@ -58,58 +132,127 @@
             tracks: [
                 {
                     name: 'Tom 1',
-                    sampleUrl: '909 HI.TOM1.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
                 }, {
                     name: 'Tom 2',
-                    sampleUrl: '909 HI.TOM2.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM2.wav'
                 }, {
                     name: 'Tom 3',
-                    sampleUrl: '909 HI.TOM3.wav'
+                    sampleUrl: '12-TR-909/909 HI.TOM3.wav'
                 }, {
                     name: 'Tom 4',
-                    sampleUrl: '909 HI.TOM4.wav'
-                }
-            ]
-        },
-        {
-            type: 'synth',
-            color: '#c0ffee',
-            name: 'Nordic Lead',
-            tracks: [
-                {
-                 name: 'A2',
-                 note: 0
-                }, {
-                 name: 'C2',
-                 note: 3
-                }, {
-                 name: 'D2',
-                 note: 5
-                }, {
-                 name: 'E2',
-                 note: 7
-                }, {
-                 name: 'G2',
-                 note: 10
-                }, {
-                 name: 'A3',
-                 note: 12
-                }, {
-                 name: 'C3',
-                 note: 15
-                }, {
-                 name: 'D3',
-                 note: 17
-                }, {
-                 name: 'E3',
-                 note: 19
-                }, {
-                 name: 'G3',
-                 note: 21
+                    sampleUrl: '12-TR-909/909 HI.TOM4.wav'
                 }
             ]
         }
+        // ,{
+        //     type: 'synth',
+        //     color: '#c0ffee',
+        //     name: 'Nordic Lead',
+        //     tracks: [
+        //         {
+        //          name: 'A2',
+        //          note: 0
+        //         }, {
+        //          name: 'C2',
+        //          note: 3
+        //         }, {
+        //          name: 'D2',
+        //          note: 5
+        //         }, {
+        //          name: 'E2',
+        //          note: 7
+        //         }, {
+        //          name: 'G2',
+        //          note: 10
+        //         }, {
+        //          name: 'A3',
+        //          note: 12
+        //         }, {
+        //          name: 'C3',
+        //          note: 15
+        //         }, {
+        //          name: 'D3',
+        //          note: 17
+        //         }, {
+        //          name: 'E3',
+        //          note: 19
+        //         }, {
+        //          name: 'G3',
+        //          note: 21
+        //         }
+        //     ]
+        // }
     ];
+
+    var effectsConfig = [
+        {
+            id: 0,
+            name: 'Delay',
+            y: {
+                name: 'Amount',
+                param: 'delayAmount',
+                min: 0,
+                max: 1
+            },
+            x: {
+                name: 'Time',
+                param: 'delayTime',
+                min: 0,
+                max: 1000
+            }
+        }, {
+            id: 1,
+            name: 'Filter',
+            y: {
+                name: 'filterCutoff',
+                min: 0,
+                max: 1
+            },
+            x: {
+                name: 'filterFreq',
+                min: 0,
+                max: 2000
+            }
+        }, {
+            id: 2,
+            name: 'Reverb',
+            y: {
+                name: 'reverbAmount',
+                min: 0,
+                max: 0
+            },
+            x: {
+                name: '',
+                min: 0,
+                max: 0
+            }
+        }, {
+            id: 3,
+            name: '',
+            y: {
+                name: '',
+                min: 0,
+                max: 0
+            },
+            x: {
+                name: '',
+                min: 0,
+                max: 0
+            }
+        }
+    ];
+
+    // FX
+
+    var delayAmount = 0;
+    var delayTime = 0;
+
+    var filterCutoff = 0;
+    var filterFreq = 0;
+
+    var reverbAmount = 0;
+
 
     this.initialize = function() {
 
@@ -158,9 +301,34 @@
         // Reset the notes of all the tracks
         for (var n = 0, len = instrument.tracks.length; n < len; n += 1) {
             var track = instrument.tracks[n];
-            instrument.tracks[n] = new mixr.models.Track(track.id, track.name, null, track.sampleUrl, track.volume);
+            instrument.tracks[n].resetNotes()
         }
         _availableInstruments.push(instrument);
+    };
+
+    this.getNextInstrument = function(clientId) {
+        if (typeof _clients[clientId] !== 'undefined') {
+            return _clients[clientId];
+        }
+
+        var numAvailableInstruments = _availableInstruments.length;
+        if (numAvailableInstruments === 0) {
+            console.log("No more instruments available");
+            return;
+        }
+
+        var nextInstrument = _availableInstruments[0];
+        _availableInstruments.shift();
+
+        // Initialize the instrument and call start when ready.
+        nextInstrument.initialize(this.start);
+        // Pass the context the instrument.
+        nextInstrument.setup(_context);
+
+        console.log("Released random instrument", nextInstrument);
+
+        _clients[clientId] = nextInstrument;
+        return nextInstrument;
     };
 
     this.getRandomInstrument = function(clientId) {
@@ -178,8 +346,9 @@
         var randomInstrument = _availableInstruments[randomIndex];
         _availableInstruments.splice(randomIndex, 1);
 
+        // Initialize the instrument and call start when ready.
         randomInstrument.initialize(this.start);
-
+        // Pass the context the instrument.
         randomInstrument.setup(_context);
 
         console.log("Released random instrument", randomInstrument);
@@ -281,6 +450,25 @@
         // _instruments[instrumentId].tracks[trackId].notes[data.noteId] = data.volume;
     };
 
+    this.updateFxParam = function(data) {
+        console.log('update fx param', data);
+
+        var fxConfig = effectsConfig[data.id];
+        paramX = fxConfig.x.param;
+        paramY = fxConfig.y.param;
+        valueX = this.interpolate(data.x, fxConfig.x.min, fxConfig.x.max);
+        valueY = this.interpolate(data.y, fxConfig.y.min, fxConfig.y.max);
+        this[paramX] = valueX;
+        this[paramY] = valueY;
+
+        console.log('update', paramX, ':', valueX);
+        console.log('update', paramY, ':', valueY);
+    };
+        
+    this.interpolate = function(value, minimum, maximum) {
+        return minimum + (maximum - minimum) * value;
+    }
+        
     this.initialize();
   };
 

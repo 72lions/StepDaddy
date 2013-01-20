@@ -32,7 +32,7 @@ button {
 
 @-webkit-keyframes beat {
   from {
-    background: rgba(255, 255, 255, 0.8); }
+    background: white; }
 
   to {
     background: rgba(255, 255, 255, 0); } }
@@ -70,7 +70,7 @@ button {
     border-collapse: collapse; }
   #pattern-editor thead th,
   #sequencer-view thead th {
-    height: 20px; }
+    height: 10px; }
     #pattern-editor thead th#playhead,
     #sequencer-view thead th#playhead {
       position: relative;
@@ -117,9 +117,11 @@ button {
         text-overflow: ellipsis;
         overflow: hidden;
         width: 60px;
-        padding: 10px;
+        padding: 0 5px;
         box-sizing: border-box;
-        text-shadow: 0 1px #aaaaaa; }
+        text-shadow: 0 1px #aaaaaa;
+        margin: 0;
+        text-align: center; }
       @media (min-width: 580px) {
         #pattern-editor td:nth-child(1),
         #sequencer-view td:nth-child(1) {

@@ -51,6 +51,10 @@
       request.send();
     };
 
+    this.resetNotes = function() {
+      this.notes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    }
+
     this.getNotes = function() {
       return _notes;
     };
