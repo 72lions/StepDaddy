@@ -68,6 +68,43 @@
             ]
         }, {
             type: 'samples',
+            color: '#51ACBD',
+            name: 'Bass DRY synth',
+            tracks: [
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_1.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_2.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_3.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bassdry/Bass3_4.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bassdry/Bass3_5.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_6.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_7.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_8.mp3'
+                }
+            ]   
+        }, {
+            type: 'samples',
             color: 'hotpink',
             name: 'Drums',
             tracks: [
