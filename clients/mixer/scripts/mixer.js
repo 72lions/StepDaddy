@@ -88,8 +88,8 @@
 
       document.getElementById('disconnect').addEventListener('click', _onDisconnect);
 
-      _conn = new mixr.net.Connection();
-      _conn.connect('http://10.48.19.160:8181')
+      _conn = new mixr.net.Connection(_client_id);
+      _conn.connect('http://10.48.19.121:8181')
       .on(mixr.enums.Events.REGISTER, function() {
             _conn.createRoom(_room_id, _onRoomCreated, _onRoomCreateError);
           })

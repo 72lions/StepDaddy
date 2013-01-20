@@ -34,11 +34,21 @@
     };
 
     var _onJoinRoom = function() {
+
       _conn.joinRoom(document.getElementById('room_id').value,
           _onRoomJoined,
           function(e) {
             console.log('Room not joined!', e);
           });
+    };
+
+    var _onConnect = function(e) {
+
+      _client_id = document.getElementById('client_id').value;
+      _conn = new mixr.net.Connection(_client_id);
+      _conn.connect('http://10.48.19.121:8181')
+      .on(mixr.enums.Events.REGISTER, _onRegistered)
+      .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
     };
 
     var _onRoomClosed = function(data) {
@@ -57,6 +67,9 @@
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
 
+      setTimeout(function () {
+        window.scrollTo(0,1);
+      }, 0);
     };
 
   };

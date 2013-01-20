@@ -59,9 +59,11 @@
       _model.on(mixr.enums.Events.INSTRUMENT, function () {
         var tracks = _model.instrument.tracks;
         for (var i = 0; i < tracks.length; i++) {
-          view.addTrack(tracks[i]);
+          view.addTrack(tracks[i], _model.instrument.color);
         }
       });
+
+     
 
       // listen for note change event
       _model.getInstrument();
