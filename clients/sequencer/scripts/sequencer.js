@@ -268,6 +268,7 @@
     var _highpassFilterFreq = 0;
     this._filterFreq = 22000;
     this._playbackRate = 1;
+    this._q = 1; 
     this._empty = null;
     var _filterCutoff = 22000;
 
@@ -285,10 +286,10 @@
                 max: 22000
             },
             y: {
-                name: '',
-                param: '_empty',
+                name: 'Q',
+                param: '_q',
                 min: 0,
-                max: 1
+                max: 5
             }
         }, {
             id: 1,
@@ -297,7 +298,7 @@
                 name: 'Freq',
                 param: '_playbackRate',
                 min: 0.5,
-                max: 4
+                max: 2
             },
             y: {
                 name: '',
@@ -322,6 +323,7 @@
         //create lowpass filter
         _lowpassFilter = _context.createBiquadFilter();
         _lowpassFilter.frequency.value = 300;
+        _lowpassFilter.Q.value = 300;
         
         
         // _masterGainNode.connect(_lowpassFilter);
@@ -388,6 +390,7 @@
         // _delay.delayTime.value = _delayTime;
         // _masterDelaySend.gain.value = _delayAmount;
         _lowpassFilter.frequency.value = this._filterFreq;
+        _lowpassFilter.Q.value = this._q;
         // console.log('_filterFreq', this._filterFreq, _lowpassFilter.frequency.value);
     }
 
