@@ -54,6 +54,44 @@
         },
         {
             type: 'samples',
+            color: '#51ACBD',
+            name: 'Bass DRY synth',
+            tracks: [
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_8.mp3'
+                },
+                {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_7.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_6.mp3'
+                },
+                {
+                    name: 'F#',
+                    sampleUrl: 'bassdry/Bass3_5.mp3'
+                },
+                {
+                    name: 'E',
+                    sampleUrl: 'bassdry/Bass3_4.mp3'
+                },
+                {
+                    name: 'C#',
+                    sampleUrl: 'bassdry/Bass3_3.mp3'
+                }, {
+                    name: 'H',
+                    sampleUrl: 'bassdry/Bass3_2.mp3'
+                },
+                {
+                    name: 'A',
+                    sampleUrl: 'bassdry/Bass3_1.mp3'
+                }
+            ]   
+        }, 
+        {
+            type: 'samples',
             color: '#AADB53',
             name: 'Lead synth',
             tracks: [
@@ -132,44 +170,8 @@
             ]
         },
         */ 
+        /*
         {
-            type: 'samples',
-            color: '#51ACBD',
-            name: 'Bass DRY synth',
-            tracks: [
-                {
-                    name: 'C#',
-                    sampleUrl: 'bassdry/Bass3_8.mp3'
-                },
-                {
-                    name: 'H',
-                    sampleUrl: 'bassdry/Bass3_7.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bassdry/Bass3_6.mp3'
-                },
-                {
-                    name: 'F#',
-                    sampleUrl: 'bassdry/Bass3_5.mp3'
-                },
-                {
-                    name: 'E',
-                    sampleUrl: 'bassdry/Bass3_4.mp3'
-                },
-                {
-                    name: 'C#',
-                    sampleUrl: 'bassdry/Bass3_3.mp3'
-                }, {
-                    name: 'H',
-                    sampleUrl: 'bassdry/Bass3_2.mp3'
-                },
-                {
-                    name: 'A',
-                    sampleUrl: 'bassdry/Bass3_1.mp3'
-                }
-            ]   
-        }, {
             type: 'samples',
             color: '#deadf0',
             name: 'Percussion',
@@ -186,6 +188,30 @@
                 }, {
                     name: 'Tom 2',
                     sampleUrl: '12-TR-909/909 HI.TOM2.wav'
+                }
+            ]
+        },
+        */
+        {
+            type: 'samples',
+            color: '#BD5181',
+            name: 'Voice',
+            tracks: [
+                {
+                    name: 'Music',
+                    sampleUrl: 'voice/Voice1_1.mp3'
+                }, {
+                    name: 'Hack',
+                    sampleUrl: 'voice/Voice1_2.mp3'
+                }, {
+                    name: 'Day',
+                    sampleUrl: 'voice/Voice1_3.mp3'
+                }, {
+                    name: 'At',
+                    sampleUrl: 'voice/Voice1_4.mp3'
+                }, {
+                    name: 'Spotify',
+                    sampleUrl: 'voice/Voice1_5.mp3'
                 }
             ]
         }
