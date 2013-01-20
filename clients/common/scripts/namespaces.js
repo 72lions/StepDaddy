@@ -1,3 +1,4 @@
+window.SERVER = 'http://10.48.19.160:8181';
 /**
  * The mixr namespace
  * @type {Object}

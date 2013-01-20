@@ -64,7 +64,7 @@
       document.getElementById('join_room').addEventListener('click', _onJoinRoom);
 
       _conn = new mixr.net.Connection();
-      _conn.connect('http://10.48.19.160:8181')
+      _conn.connect(window.SERVER)
       .on(mixr.enums.Events.REGISTER, _onRegistered)
       .on(mixr.enums.Events.ROOM_CLOSED, _onRoomClosed);
 
