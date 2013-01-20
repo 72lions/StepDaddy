@@ -56,15 +56,32 @@ html, body {
   #pattern-editor td,
   #sequencer-view td {
     border: 1px solid #333333;
-    background: #000; }
-    #pattern-editor td:active, #pattern-editor td.active,
+    background: #000;
+    /* mark 1st beat in bars
+    &:nth-child(2) {
+      border-left: 1px solid #f9f9f9;
+    }
+    &:nth-child(9) {
+      border-right: 1px solid #f9f9f9;
+    }*/ }
+    #pattern-editor td:nth-child(1), #pattern-editor td:active, #pattern-editor td.active,
+    #sequencer-view td:nth-child(1),
     #sequencer-view td:active,
     #sequencer-view td.active {
-      background: transparent; }
+      background: transparent;
+      position: relative;
+      /* gloss
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        background: rgba(255, 255, 255, .1);
+        top: 0;
+      }*/ }
     #pattern-editor td:nth-child(1),
     #sequencer-view td:nth-child(1) {
-      width: 100px;
-      background: transparent; }
+      width: 100px; }
       #pattern-editor td:nth-child(1) h1,
       #sequencer-view td:nth-child(1) h1 {
         font-weight: bold;
@@ -73,10 +90,5 @@ html, body {
         overflow: hidden;
         width: 100px;
         padding: 10px;
-        box-sizing: border-box; }
-    #pattern-editor td:nth-child(2),
-    #sequencer-view td:nth-child(2) {
-      border-left: 1px solid #f9f9f9; }
-    #pattern-editor td:nth-child(9),
-    #sequencer-view td:nth-child(9) {
-      border-right: 1px solid #f9f9f9; }
+        box-sizing: border-box;
+        text-shadow: 0 1px #aaaaaa; }

@@ -7,7 +7,7 @@
    * @class Connection
    * @param {String} id The id of this specific connection.
    */
-  mixr.net.Connection = function(id) {
+  mixr.net.Connection = function() {
 
     /**
      * Mixins
@@ -43,7 +43,7 @@
      * @private
      * @type {String}
      */
-    var _clientId = id;
+    var _clientId;
 
     /**
      * The room to where the client is connected
@@ -70,7 +70,7 @@
     var _onConnect = function() {
       _self.isConnected = true;
       console.log('Connected!');
-      _self.send(mixr.enums.Events.REGISTER, {client: _clientId});
+      _self.send(mixr.enums.Events.REGISTER, {client: null});
     };
 
     /**
@@ -80,6 +80,7 @@
      * @function
      */
     var _onRegistered = function(data) {
+      _clientId = data;
       _self.emit(mixr.enums.Events.REGISTER, data);
     };
 

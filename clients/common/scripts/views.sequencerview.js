@@ -23,27 +23,28 @@
     var $table = $el.find('table');
 
     var $playhead = undefined;
-   
+
 
     this.drawPlayhead = function (beat) {
+  /*
       var labelWidth = $table.find('h1').width();
       var noteWidth = ($(window).width() - labelWidth) / noteCount;
-      
+
       var offset = labelWidth + noteWidth * (beat);
 
-/*
+
       if (!$playhead) {
         $playhead = $('#playhead');
         $playhead.css('width', noteWidth);
       }
       $playhead.css('-webkit-transform', 'translate3d(' + offset + 'px, 0, 0)');;
-  */    
+  */
       var $tds = $('th:nth-child(' + (beat + 2) + ')');
       $tds.on('webkitAnimationEnd', function () {
         $tds.removeClass('beat');
       });
       $tds.addClass('beat');
-      
+
     };
 
 
@@ -106,6 +107,9 @@
       return this;
     };
 
+    this.removeInstrument = function(instrument) {
+      $table.find('tr[data-instrument-id="' + instrument.id + '"]').remove();
+    };
 
     /**
      * Initializes the component

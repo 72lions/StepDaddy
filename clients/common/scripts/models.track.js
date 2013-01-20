@@ -55,7 +55,7 @@
       return _notes;
     };
 
-    this.getBuffer = function() {  
+    this.getBuffer = function() {
       return _buffer;
     };
 

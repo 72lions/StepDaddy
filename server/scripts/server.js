@@ -84,6 +84,10 @@ define([
       _io.sockets.on('connection', function(socket) {
 
         socket.on('register', function(data) {
+          if (!data.client) {
+            data.client = 'client_' + (new Date().getTime() + Math.floor(Math.random() * 1000));
+            console.log('I need to create a new id');
+          }
           console.log('Registering socket with id', data.client);
           _self.register(data.client, socket);
         });
@@ -191,6 +195,7 @@ define([
         _clients[clientId] = new Client(clientId, socket)
           .on('emit', _onClientEmit)
           .on('byebye', _onClientBye)
+          .on('disconnect', _onClientBye)
           .on('create_room', _onClientCreateRoom)
           .on('join_room', _onClientJoinRoom)
           .on('search', _onSearch)
