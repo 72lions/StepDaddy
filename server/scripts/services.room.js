@@ -99,6 +99,10 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
 
     };
 
+    var _onModifierChange = function(data) {
+      _roomOwnerClient.send('modifier_change', {client: data.client, args: data.args});
+    };
+
     var _onSeqencerBeat = function(data) {
       _self.broadcast('seq_beat', data);
     };
@@ -114,6 +118,7 @@ define(['sys', 'mixins.wrapper'], function(sys, MixinsWrapper) {
       console.log('Registering room specific event listeners for client', client.id);
       client.on('get_instrument', _onGetInstrument)
       .on('instrument', _onInstrument)
+      .on('modifier_change', _onModifierChange)
       .on('note', _onNote)
       .on('disconnect', _onClientBye)
       .on('byebye', _onClientBye)

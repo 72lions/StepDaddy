@@ -44,6 +44,21 @@ button {
   -webkit-animation-duration: .6s;
   -webkit-transform: translateZ(0); }
 
+#login {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8); }
+  #login .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin-left: -150px;
+    margin-top: -100px; }
+
 #pattern-editor,
 #sequencer-view {
   height: 100%;
@@ -61,9 +76,10 @@ button {
       position: relative;
       left: 0%;
       top: 0;
-      height: 10px;
+      height: 20px;
       -webkit-animation-iteration-count: infinite;
-      -webkit-animation-duration: 2s; }
+      -webkit-animation-duration: 2s;
+      background-color: #C8DEC0; }
   #pattern-editor td,
   #sequencer-view td {
     border: 1px solid #333333;
@@ -114,27 +130,3 @@ button {
           #sequencer-view td:nth-child(1) h1 {
             font-size: 16px;
             width: 100px; } }
-
-/*
-old dodo stuff
-
-.search-box {
-  margin: 0 0 20px 0;
-}
-
-  .search-box .search {
-    margin: 5px 0 0 5px;
-    text-transform: uppercase;
-    font-size: 90px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    outline: none;
-    font-weight: bold;
-    width: 100%;
-    color: rgba(0, 0, 0, 0.7);
-    font-family: "Lucida Sans", sans-serif;
-  }
-
-  */
-#login {
-  padding: 50px; }

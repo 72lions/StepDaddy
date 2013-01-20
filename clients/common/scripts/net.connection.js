@@ -166,6 +166,10 @@
       _self.emit(mixr.enums.Events.NOTE, data);
     };
 
+    var _onModifierChange = function(data) {
+      _self.emit(mixr.enums.Events.MODIFIER_CHANGE, data);
+    };
+
     var _onSequencerBeat = function(data) {
       _self.emit(mixr.enums.Events.SEQUENCER_BEAT, data.args.beat);
     };
@@ -220,6 +224,7 @@
       .on(mixr.enums.Events.GET_INSTRUMENT, _onGetInstrument)
       .on(mixr.enums.Events.INSTRUMENT, _onInstrument)
       .on(mixr.enums.Events.NOTE, _onNote)
+      .on(mixr.enums.Events.MODIFIER_CHANGE, _onModifierChange)
       .on(mixr.enums.Events.SEQUENCER_BEAT, _onSequencerBeat);
 
       return this;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Device</title>
+  <title>FX Panels</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -11,13 +11,10 @@
   <section id="login">
     <div class="form">
       <input type="text" id="room_id" value="Mixr_room_1" />&nbsp;<input type="button" value="Join room" id="join_room"/>
-    </div>
+  </form>
   </section>
 
-  <section id="pattern-editor">
-    <table>
-    </table>
-  </section>
+  <div id="modifiers"></div>
 
   <script src="../common/lib/socket.io.js"></script>
   <script src="../common/lib/jquery-1.9.0.min.js"></script>
@@ -29,13 +26,8 @@
   <script src="../common/scripts/enum.events.js"></script>
   <script src="../common/scripts/net.connection.js"></script>
   <script src="../common/scripts/net.response.js"></script>
-  <script src="../common/scripts/net.proxyrequest.js"></script>
 
-  <script src="../common/scripts/models.instrument.js"></script>
-  <script src="../common/scripts/models.track.js"></script>
-  <script src="../common/scripts/models.patterneditor.js"></script>
-  <script src="../common/scripts/controllers.patterneditor.js"></script>
-  <script src="../common/scripts/views.patterneditor.js"></script>
+  <script src="../common/scripts/ui.fxpad.js"></script>
 
   <script>
     window.addEventListener('load', function() {
@@ -43,6 +35,4 @@
     }, false);
   </script>
 
-  <script src="scripts/device.js"></script>
-</body>
-</html>
+  <script src="scripts/fx.js"></script>

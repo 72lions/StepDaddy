@@ -94,7 +94,7 @@
 
     SEQUENCER_BEAT: 'seq_beat',
 
-    FX_UPDATE: 'fx_update'
+    MODIFIER_CHANGE: 'modifier_change'
   };
 
 }());
