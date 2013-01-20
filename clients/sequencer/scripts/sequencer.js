@@ -215,7 +215,7 @@
                 name: 'Time',
                 param: '_delayTime',
                 min: 0,
-                max: 1000
+                max: 1
             }
         }, {
             id: 1,
@@ -329,6 +329,7 @@
     };
 
     this.setFxValues = function() {
+
         _delay.delayTime.value = _delayTime;
         _masterDelaySend.gain.value = _delayAmount;
     }
@@ -485,7 +486,7 @@
         // Connect the source to the gain node.
         voice.connect(gainNode);
         // Connect the gain node to the destination.
-        gainNode.connect(_context.destination);
+        gainNode.connect(_masterGainNode);
 
         // Reduce the volume.
         gainNode.gain.value = volume;
