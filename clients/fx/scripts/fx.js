@@ -6,7 +6,7 @@
     var _conn;
     var _padsAreInitialized = false;
     var container = document.getElementById('modifiers');
-    var modifiers = ['Test 1', 'Test 2', 'Test 3', 'Test 4'];
+    var modifiers = ['Cutoff' , 'Playback Rate'];
 
     var _onModifierChange = function(data) {
       _conn.execute(mixr.enums.Events.MODIFIER_CHANGE, data);
