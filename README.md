@@ -4,6 +4,14 @@ Who's your step daddy!!??
 Multi user collaborative step sequencer. Several users can connect with their mobile devices or desktops and play a step sequencer together hosted on one of the devices connected. 
 One device will be able to act as the main controller for all sound controlling filter and pitch.
 
+### Requirements
+* Google Chrome 24+
+* NodeJS for running the server.
+* Python for running a simple server for the clients. 
+
+Also since that project was part of the Music Hack Day in Stockholm we only tested everything in MacOSX.
+
+
 ### Setup
 
 1. Install dependencies by running **make** from the root folder.
