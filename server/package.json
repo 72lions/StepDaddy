@@ -5,13 +5,8 @@
   "main": "main.js",
   "dependencies": {
     "express": "~3.0.4",
-    "jsdom": "~0.3.1",
-    "localStorage": "~1.0.0",
     "requirejs": "~2.1.2",
-    "socket.io": "~0.9.12",
-    "ws": "~0.4.24",
-    "xmldom": "~0.1.13",
-    "xmlhttprequest": "~1.5.0"
+    "socket.io": "~0.9.12"
   },
   "devDependencies": {},
   "scripts": {
