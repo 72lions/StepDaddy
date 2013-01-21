@@ -13,5 +13,5 @@ One device will be able to act as the main controller for all sound controlling 
 ### How to use it
 
 1. Open namespaces.js and replace the IP in **windows.SERVER** with the IP of your server.
-2. Open your browser and go to **http://<yourip>/clients/mixer**. By default the mixer client creates and joins a room called **Mixer_room_1**.
+2. Open your browser and go to **http://<yourip>clients/mixer**. By default the mixer client creates and joins a room called **Mixer_room_1**.
 3. Open another browser (mobile, tablet, browser) and browse to **clients/device** or **clients/fx**. Each client will get an instrument from the synthesizer and the fx app is responsible for adding two effects.
