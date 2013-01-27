@@ -1,5 +1,5 @@
-window.SERVER = 'http://192.168.0.13:8181';
-window.CLIENTS = 'http://192.168.0.13:8282';
+window.SERVER = 'http://72lions.com:60000';
+window.CLIENTS = 'http://experiments.72lions.com/stepdaddy';
 /**
  * The mixr namespace
  * @type {Object}

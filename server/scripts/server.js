@@ -23,7 +23,7 @@ define([
      * @private
      * @type {Number}
      */
-    var PORT = 8181;
+    var PORT = 60000;
 
     /**
      * The app

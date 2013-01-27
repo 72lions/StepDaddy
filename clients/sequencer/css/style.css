@@ -76,10 +76,10 @@ button {
   user-select: text; }
   #roomId div {
     position: absolute;
-    width: 600px;
+    width: 750px;
     top: 50%;
     left: 50%;
-    margin-left: -300px;
+    margin-left: -375px;
     margin-top: -235px;
     color: #fff;
     font-size: 15px;
