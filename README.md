@@ -4,6 +4,8 @@ Who's your step daddy!!??
 Multi user collaborative step sequencer. Several users can connect with their mobile devices or desktops and play a step sequencer together hosted on one of the devices connected. 
 One device will be able to act as the main controller for all sound controlling filter and pitch.
 
+###<a href="http://experiments.72lions.com/stepdaddy/sequencer/">Demo</a>
+
 ### Requirements
 * Google Chrome 24+
 * NodeJS for running the server.
