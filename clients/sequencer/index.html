@@ -22,6 +22,36 @@
 </head>
 <body>
 
+  <div id="roomId">
+    <div>
+      <h1>Welcome to Step Daddy!</h1>
+      <p>
+        Step Daddy is a multi user collaborative step sequencer.
+        Several users can connect with their mobile devices or desktops and play a step sequencer
+        together hosted on one of the devices connected.
+        One device will be able to act as the main controller for
+        all sound controlling filter and pitch.
+      </p>
+      <p>
+        <img src="../common/images/ipad_iphone_64.png" />
+        <img src="../common/images/Nexus7.png" />
+      </p>
+      <p>
+        You can connect up to 6 devices by navigating to this url:
+      </p>
+      <h2>
+      </h2>
+      <br/><br/>
+      <p class="copyright">
+        This project was a created during the Music Hackday 2013
+        in Stockholm and it was a collaboration of
+        @Plan8_Music,
+        @ffdead,
+        @blog2t
+        and @72lions </p>
+    </div>
+  </div>
+
   <section id="sequencer-view">
     <table>
     </table>
@@ -29,7 +59,7 @@
 
   <script src="../common/lib/socket.io.js"></script>
   <script src="../common/lib/jquery-1.9.0.min.js"></script>
-  
+
   <script src="../common/scripts/namespaces.js"></script>
   <script src="../common/scripts/mixins.eventtarget.js"></script>
   <script src="../common/scripts/mixins.wrapper.js"></script>
@@ -41,10 +71,10 @@
   <script src="../sequencer/scripts/websynth_dsp.js"></script>
   <script src="../common/scripts/models.track.js"></script>
   <script src="../common/scripts/models.instrument.js"></script>
-  
+
   <script src="../common/scripts/views.sequencerview.js"></script>
 
-  <script src="../sequencer/scripts/sequencer.js"></script>
+  <script src="scripts/sequencer.js"></script>
   <script src="scripts/mixer.js"></script>
 
 </body>

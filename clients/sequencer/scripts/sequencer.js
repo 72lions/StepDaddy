@@ -97,34 +97,34 @@
             tracks: [
                 {
                     name: 'A',
-                    sampleUrl: 'lead3/Synth3_8.mp3'
+                    sampleUrl: 'lead1/Synth1_8.mp3'
                 }, {
                     name: 'H',
-                    sampleUrl: 'lead3/Synth3_7.mp3'
+                    sampleUrl: 'lead1/Synth1_7.mp3'
                 },
                 {
                     name: 'C#',
-                    sampleUrl: 'lead3/Synth3_6.mp3'
+                    sampleUrl: 'lead1/Synth1_6.mp3'
                 },
                 {
                     name: 'E',
-                    sampleUrl: 'lead3/Synth3_5.mp3'
+                    sampleUrl: 'lead1/Synth1_5.mp3'
                 },
                 {
                     name: 'F#',
-                    sampleUrl: 'lead3/Synth3_4.mp3'
+                    sampleUrl: 'lead1/Synth1_4.mp3'
                 },
                 {
                     name: 'A',
-                    sampleUrl: 'lead3/Synth3_3.mp3'
+                    sampleUrl: 'lead1/Synth1_3.mp3'
                 },
                 {
                     name: 'H',
-                    sampleUrl: 'lead3/Synth3_2.mp3'
+                    sampleUrl: 'lead1/Synth1_2.mp3'
                 },
                 {
                     name: 'C#',
-                    sampleUrl: 'lead3/Synth3_1.mp3'
+                    sampleUrl: 'lead1/Synth1_1.mp3'
                 }
             ]
         },
@@ -170,28 +170,6 @@
             ]
         },
         */
-        /*
-        {
-            type: 'samples',
-            color: '#deadf0',
-            name: 'Percussion',
-            tracks: [
-                {
-                    name: 'Clap',
-                    sampleUrl: '12-TR-909/909 CLAP.wav'
-                }, {
-                    name: 'Rim',
-                    sampleUrl: '12-TR-909/909 RIM.wav'
-                }, {
-                    name: 'Tom 1',
-                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
-                }, {
-                    name: 'Tom 2',
-                    sampleUrl: '12-TR-909/909 HI.TOM2.wav'
-                }
-            ]
-        },
-        */
         {
             type: 'samples',
             color: '#BD5181',
@@ -214,7 +192,7 @@
                     sampleUrl: 'voice/Voice1_5.mp3'
                 }
             ]
-        }
+        },
         // ,{
         //     type: 'synth',
         //     color: '#c0ffee',
@@ -252,7 +230,27 @@
         //          note: 21
         //         }
         //     ]
-        // }
+        // },
+        {
+            type: 'samples',
+            color: '#deadf0',
+            name: 'Percussion',
+            tracks: [
+                {
+                    name: 'Clap',
+                    sampleUrl: '12-TR-909/909 CLAP.wav'
+                }, {
+                    name: 'Rim',
+                    sampleUrl: '12-TR-909/909 RIM.wav'
+                }, {
+                    name: 'Tom 1',
+                    sampleUrl: '12-TR-909/909 HI.TOM1.wav'
+                }, {
+                    name: 'Tom 2',
+                    sampleUrl: '12-TR-909/909 HI.TOM2.wav'
+                }
+            ]
+        }
     ];
 
 
@@ -268,7 +266,7 @@
     var _highpassFilterFreq = 0;
     this._filterFreq = 22000;
     this._playbackRate = 1;
-    this._q = 1; 
+    this._q = 1;
     this._empty = null;
     var _filterCutoff = 22000;
 

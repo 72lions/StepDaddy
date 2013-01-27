@@ -2,17 +2,33 @@
 
   mixr.Mixer = function() {
 
+    var DICTIONARY = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+
     var _room_id = 'Mixr_room_1';
     var _conn;
     var _clients = {};
     var _instruments = {};
-
+    var _totalInstruments = 0;
     var _sequencer;
     var _sequencerView;
 
+    var _encode = function(i) {
+      if (i == 0) {
+        return DICTIONARY[0];
+      }
+      var result = '';
+      var base = DICTIONARY.length;
+
+      while (i > 0) {
+        result += DICTIONARY[(i % base)];
+        i = Math.floor(i / base);
+      }
+
+      return result.split('').reverse().join('');
+    }
+
     var _onRoomCreated = function(data) {
       console.log('The room was created:', data.room);
-      //document.getElementById('room_title').innerText = data.room;
     };
 
     var _onRoomClosed = function(data) {
@@ -49,6 +65,10 @@
         _sequencerView.removeInstrument(instrument);
         _sequencer.addInstrument(instrument);
         delete _instruments[data.client];
+        _totalInstruments--;
+        if (_totalInstruments <= 0) {
+          $('#roomId').show();
+        }
       }
     };
 
@@ -60,10 +80,12 @@
 
       if (instrument) {
         _conn.execute(mixr.enums.Events.INSTRUMENT, {receiver: data.client, instrument: instrument});
-        console.log(">>> Instrument", instrument);
+        console.log('>>> Instrument', instrument);
         if (typeof _instruments[data.client] === 'undefined') {
+          _totalInstruments++;
           _sequencerView.addInstrument(instrument);
           _instruments[data.client] = instrument;
+          $('#roomId').hide();
         }
       } else {
         console.log('No more instruments available.');
@@ -80,6 +102,14 @@
     };
 
     this.initialize = function() {
+
+      _room_id = _encode(new Date().getTime());
+
+      $('#roomId').find('span').html(_room_id);
+
+      var h2 = $('#roomId').find('h2');
+      $(h2).append('<a target="_blank" href="' + window.CLIENTS + '/device/?' + _room_id + '">' + window.CLIENTS + '/device/?' + _room_id + '</a><br/>or<br/>');
+      $(h2).append('<a target="_blank" href="' + window.CLIENTS + '/fx/?' + _room_id + '">' + window.CLIENTS + '/fx/?' + _room_id + '</a>');
 
       _conn = new mixr.net.Connection();
       _conn.connect(window.SERVER)

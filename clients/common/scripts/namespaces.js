@@ -1,4 +1,5 @@
-window.SERVER = 'http://10.48.19.160:8181';
+window.SERVER = 'http://192.168.0.13:8181';
+window.CLIENTS = 'http://192.168.0.13:8282';
 /**
  * The mixr namespace
  * @type {Object}
@@ -66,26 +67,26 @@ mixr.ui = mixr.ui || {};
 // fixes from Paul Irish and Tino Zijdel
 
 (function() {
-    var lastTime = 0;
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
-                                   || window[vendors[x]+'CancelRequestAnimationFrame'];
-    }
+  var lastTime = 0;
+  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||
+        window[vendors[x] + 'CancelRequestAnimationFrame'];
+  }
 
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-              timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
+  if (!window.requestAnimationFrame)
+    window.requestAnimationFrame = function(callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+          timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
 
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
+  if (!window.cancelAnimationFrame)
+    window.cancelAnimationFrame = function(id) {
+      clearTimeout(id);
+    };
 }());

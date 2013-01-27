@@ -25,8 +25,8 @@
     var $playhead = undefined;
 
 
-    this.drawPlayhead = function (beat) {
-  /*
+    this.drawPlayhead = function(beat) {
+      /*
       var labelWidth = $table.find('h1').width();
       var noteWidth = ($(window).width() - labelWidth) / noteCount;
 
@@ -40,7 +40,7 @@
       $playhead.css('-webkit-transform', 'translate3d(' + offset + 'px, 0, 0)');;
   */
       var $tds = $('th:nth-child(' + (beat + 2) + ')');
-      $tds.on('webkitAnimationEnd', function () {
+      $tds.on('webkitAnimationEnd', function() {
         $tds.removeClass('beat');
       });
       $tds.addClass('beat');
@@ -48,13 +48,13 @@
     };
 
 
-    this.addInstrument = function (instrument) {
+    this.addInstrument = function(instrument) {
       for (var i = 0; i < instrument.tracks.length; i++) {
         _addTrack(instrument, instrument.tracks[i]);
       }
     };
 
-    this.updateNote = function (data) {
+    this.updateNote = function(data) {
       $track = $('[data-instrument-id="' + data.id + '"][data-track-id="' + data.trackId + '"]');
       $note = $track.find('td').eq(data.noteId + 1);
 
@@ -63,7 +63,7 @@
       $note.toggleClass('active', data.volume > 0);
     };
 
-    var _addTrack = function (instrument, track) {
+    var _addTrack = function(instrument, track) {
       console.log('addTrack', track);
 
       if (trackCount === 0) {
@@ -86,9 +86,9 @@
       trackCount++;
     };
 
-    var _renderHeader = function (length) {
+    var _renderHeader = function(length) {
       var $head = $('<thead>');
-      for (var i = 0; i < length+1; i++) {
+      for (var i = 0; i < length + 1; i++) {
         var $th = $('<th>');
         $head.append($th);
       }
