@@ -89,11 +89,16 @@ button {
     top: 50%;
     left: 50%;
     margin-left: -375px;
-    margin-top: -235px;
-    color: #fff;
+    margin-top: -320px;
+    color: #ccc;
     font-size: 15px;
     text-align: center;
     font-family: Arial;
+
+    b {
+      font-size: 22px;
+      color: #fff;
+    }
 
     a:link,
     a:visited {
@@ -102,10 +107,12 @@ button {
     }
 
     h1 {
+      color: #fff;
       font-family: 'Lobster';
     }
 
     h2 {
+      color: #fff;
       font-family: Arial;
     }
 

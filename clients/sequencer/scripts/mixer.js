@@ -108,8 +108,8 @@
       $('#roomId').find('span').html(_room_id);
 
       var h2 = $('#roomId').find('h2');
-      $(h2).append('Open both links in different mobile devices but first open this url  <br/><a target="_blank" href="' + window.CLIENTS + '/fx/?' + _room_id + '">' + window.CLIENTS + '/fx/?' + _room_id + '</a><br/>and then<br/>');
-      $(h2).append('<a target="_blank" href="' + window.CLIENTS + '/device/?' + _room_id + '">' + window.CLIENTS + '/device/?' + _room_id + '</a>');
+      $(h2).eq(0).append('<a target="_blank" href="' + window.CLIENTS + '/device/?' + _room_id + '">' + window.CLIENTS + '/device/?' + _room_id + '</a>');
+      $(h2).eq(1).append('<a target="_blank" href="' + window.CLIENTS + '/fx/?' + _room_id + '">' + window.CLIENTS + '/fx/?' + _room_id + '</a><br/>');
 
 
       _conn = new mixr.net.Connection();

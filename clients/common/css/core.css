@@ -80,18 +80,23 @@ button {
     top: 50%;
     left: 50%;
     margin-left: -375px;
-    margin-top: -235px;
-    color: #fff;
+    margin-top: -320px;
+    color: #ccc;
     font-size: 15px;
     text-align: center;
     font-family: Arial; }
+    #roomId div b {
+      font-size: 22px;
+      color: #fff; }
     #roomId div a:link,
     #roomId div a:visited {
       color: #00f797;
       text-decoration: none; }
     #roomId div h1 {
+      color: #fff;
       font-family: 'Lobster'; }
     #roomId div h2 {
+      color: #fff;
       font-family: Arial; }
     #roomId div .copyright {
       font-size: 13px;
