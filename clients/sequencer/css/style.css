@@ -96,6 +96,10 @@ button {
     #roomId div .copyright {
       font-size: 13px;
       color: #999; }
+      #roomId div .copyright a:link,
+      #roomId div .copyright a:visited {
+        color: #ccc;
+        text-decoration: none; }
 
 #pattern-editor,
 #sequencer-view {

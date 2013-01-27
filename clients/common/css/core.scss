@@ -112,6 +112,12 @@ button {
     .copyright {
       font-size: 13px;
       color: #999;
+
+      a:link,
+      a:visited {
+        color: #ccc;
+        text-decoration: none;
+      }
     }
   }
 }
