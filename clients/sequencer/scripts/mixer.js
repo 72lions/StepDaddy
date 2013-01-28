@@ -101,6 +101,22 @@
       _sequencer.updateFxParam(data.args);
     };
 
+    var _shortenUrl = function(url, callback) {
+      var params = '{"longUrl": "' + url + '"}';
+      var http = new XMLHttpRequest();
+      http.open('POST', 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyD5cO_Rr60v9dff3UrocHx5YHIkVtaW3ps', true);
+
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/json');
+
+      http.onreadystatechange = function() {//Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+          callback(JSON.parse(http.responseText).id);
+        }
+      }
+      http.send(params);
+    };
+
     this.initialize = function() {
 
       _room_id = _encode(new Date().getTime());
@@ -108,8 +124,15 @@
       $('#roomId').find('span').html(_room_id);
 
       var h2 = $('#roomId').find('h2');
-      $(h2).eq(0).append('<a target="_blank" href="' + window.CLIENTS + '/device/?' + _room_id + '">' + window.CLIENTS + '/device/?' + _room_id + '</a>');
-      $(h2).eq(1).append('<a target="_blank" href="' + window.CLIENTS + '/fx/?' + _room_id + '">' + window.CLIENTS + '/fx/?' + _room_id + '</a><br/>');
+
+      _shortenUrl(window.CLIENTS + '/device/?' + _room_id, function(url) {
+        $(h2).eq(0).append('<a target="_blank" href="' + url + '">' + url + '</a>');
+      });
+
+
+      _shortenUrl(window.CLIENTS + '/fx/?' + _room_id, function(url) {
+        $(h2).eq(1).append('<a target="_blank" href="' + url + '">' + url + '</a>');
+      });
 
 
       _conn = new mixr.net.Connection();
