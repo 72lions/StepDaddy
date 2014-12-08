@@ -45,7 +45,13 @@
 
       request.onload = function() {
         _buffer = _context.createBuffer(request.response, false);
-        callback(_self);
+        _context.decodeAudioData(request.response, function onSuccess(decodedBuffer) {
+          // Decoding was successful, do something useful with the audio buffer
+          _buffer = decodedBuffer;
+          callback(_self);
+        }, function onFailure() {
+          console.error("Decoding the audio buffer failed");
+        });
       }
 
       request.send();
