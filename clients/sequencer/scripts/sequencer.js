@@ -312,10 +312,10 @@
     this.initialize = function() {
 
         // Create context.
-        _context = new webkitAudioContext();
+        _context = new AudioContext();
 
         // Create master gain control.
-        _masterGainNode = _context.createGainNode();
+        _masterGainNode = _context.createGain();
         _masterGainNode.gain.value = 0.7;
 
         //create lowpass filter
@@ -344,9 +344,9 @@
 
         _masterGainNode.connect(_lowpassFilter);
         // Create master wet and dry.
-        // _masterDry = _context.createGainNode();
-        // _masterWet = _context.createGainNode();
-        // _masterDelaySend = _context.createGainNode();
+        // _masterDry = _context.createGain();
+        // _masterWet = _context.createGain();
+        // _masterDelaySend = _context.createGain();
         // _masterDry.gain.value = 1;
         // _masterWet.gain.value = 0;
 
@@ -538,7 +538,7 @@
         voice.buffer = track.getBuffer();
 
         // Create a gain node.
-        var gainNode = _context.createGainNode();
+        var gainNode = _context.createGain();
         // Connect the source to the gain node.
         voice.connect(gainNode);
 
@@ -552,7 +552,7 @@
         gainNode.gain.value = volume;
 
         // voice.connect(_context.destination);
-        voice.noteOn(noteTime);
+        voice.start(noteTime);
     };
 
     this.step = function() {
